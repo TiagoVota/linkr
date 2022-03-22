@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 
-
-const Logo = () => {
+function Logo(){
 	return (
 		<LogoContainer>
-			<Title>
-				linkr
-			</Title>
-			<Headline>
-				save, share and discover
-				the best links on the web
-			</Headline>
+			<div>
+				<Title>
+					linkr
+				</Title>
+				<Headline>
+					save, share and discover <br />
+					the best links on the web
+				</Headline>
+			</div>
 		</LogoContainer>
 	)
 }
@@ -20,18 +21,20 @@ export default Logo
 
 
 const LogoContainer = styled.div`
-	width: 100%;
-	height: 175px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	position: absolute;
-	top: 0;
+	width: 60%;
+	height: 100%;
 
 	background: #151515;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  padding-left: 144px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media(max-width: 700px) {
+		display: none;
+	}
 `
 
 const Title = styled.h1`
@@ -40,20 +43,14 @@ const Title = styled.h1`
 	font-size: 76px;
 	line-height: 84px;
 
-	letter-spacing: 0.05em;
-
 	color: #FFFFFF;
 `
 
 const Headline = styled.h1`
 	font-family: 'Oswald', sans-serif;
-	width: 237px;
-	height: 68px;
-
 	font-weight: 700;
 	font-size: 23px;
 	line-height: 34px;
-	text-align: center;
 
 	color: #FFFFFF;
 `

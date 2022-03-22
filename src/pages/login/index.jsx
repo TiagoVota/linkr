@@ -5,18 +5,20 @@ import styled from 'styled-components'
 import useAuth from '../../hooks/useAuth'
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import { postLogin } from '../../services/api.auth'
+import api from '../../services/api.auth'
 
 import { loginSchema } from '../../schemas/userSchema'
 
-import Container from '../../components/Container'
+import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
 import Logo from '../../components/Logo'
+import LogoMobile from '../../components/LogoMobile'
 
 
 const Login = () => {
 	const { auth, login } = useAuth()
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
+	const [isDisable, setIsDisable] = useState(false)
 
 	useEffect(() => {
 		if (auth & auth?.token) goHomepage()
@@ -40,7 +42,7 @@ const Login = () => {
 		const {isValid, error} = handleValidation(body, loginSchema)
 		if (!isValid) return errorModal(error)
 
-		postLogin(body)
+		api.postLogin(body)
 			.then(({ data: userInfo }) => {
 				successModal('Login realizado!')
 				login(userInfo)
@@ -66,88 +68,45 @@ const Login = () => {
 		navigate('/')
 	}
 
-
 	return (
 		<Container>
 			<Logo />
+			<LogoMobile/>
 
-			<Form onSubmit={handleSubmit}>
-				<Input
-					id='E-mail'
-					placeholder='e-mail'
-					type='email'
-					onChange={({ target: { value }}) => changeFormData('email', value)}
-					value={formData.email}
-					required
-				/>
+			<FormContainer>
+				<Form onSubmit={handleSubmit}>
+					<Input
+						id='E-mail'
+						placeholder='e-mail'
+						type='email'
+						onChange={({ target: { value }}) => changeFormData('email', value)}
+						value={formData.email}
+						isDisable={isDisable}
+						required
+					/>
 
-				<Input
-					id='Senha'
-					placeholder='password'
-					type='password'
-					onChange={({ target: { value }}) => changeFormData('password', value)}
-					value={formData.password}
-					required
-				/>
+					<Input
+						id='Senha'
+						placeholder='password'
+						type='password'
+						onChange={({ target: { value }}) => changeFormData('password', value)}
+						value={formData.password}
+						isDisable={isDisable}
+						required
+					/>
 
-				<Button type='submit'>
-					Log In
-				</Button>
-			</Form>
+					<Button type='submit' isDisable={isDisable}>
+						Log In
+					</Button>
+				</Form>
 
-			<Link to='/sign-up'>
-				<RedirectP>
+				<RedirectLink to='/sign-up' >
 					First time? Create an account!
-				</RedirectP>
-			</Link>
+				</RedirectLink>
+			</FormContainer>
 		</Container>
 	)
 }
 
 
 export default Login
-
-
-const Form = styled.form`
-	margin: 25px 0;
-`
-
-const Input = styled.input`
-	width: 88%;
-	height: 58px;
-	margin: 0 6vw 10px;
-	padding-left: 13px;
-
-	font-size: 20px;
-
-	border-radius: 5px;
-	border-width: 0px;
-
-	background: #FFFFFF;
-`
-
-const Button = styled.button`
-	width: 88%;
-	height: 46px;
-	margin: 0px 6vw;
-
-	
-	border-radius: 5px;
-	background: #1877F2;
-	
-	font-weight: bold;
-	font-family: 'Oswald', sans-serif;
-	font-weight: 700;
-	font-size: 22px;
-	line-height: 33px;
-`
-
-const RedirectP = styled.p`
-	font-family: 'Lato', sans-serif;
-	font-weight: 400;
-	font-size: 17px;
-	line-height: 20px;
-	text-decoration-line: underline;
-
-	color: #FFFFFF;
-`
