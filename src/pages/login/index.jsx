@@ -72,20 +72,18 @@ const Login = () => {
 			<Logo />
 
 			<Form onSubmit={handleSubmit}>
-				<Label htmlFor='E-mail'>E-mail:</Label>
 				<Input
 					id='E-mail'
-					placeholder='Ex: meulindoemail@email.com'
+					placeholder='e-mail'
 					type='email'
 					onChange={({ target: { value }}) => changeFormData('email', value)}
 					value={formData.email}
 					required
 				/>
 
-				<Label htmlFor='Senha'>Senha:</Label>
 				<Input
 					id='Senha'
-					placeholder='Ex: Senha!123'
+					placeholder='password'
 					type='password'
 					onChange={({ target: { value }}) => changeFormData('password', value)}
 					value={formData.password}
@@ -93,13 +91,13 @@ const Login = () => {
 				/>
 
 				<Button type='submit'>
-					Entrar
+					Log In
 				</Button>
 			</Form>
 
-			<Link to='/auth/sign-up'>
+			<Link to='/sign-up'>
 				<RedirectP>
-					Primeira vez? Cadastre-se!
+					First time? Create an account!
 				</RedirectP>
 			</Link>
 		</Container>
@@ -114,19 +112,10 @@ const Form = styled.form`
 	margin: 25px 0;
 `
 
-const Label = styled.label`
-	margin-left: 6%;
-
-	font-size: 20px;
-	line-height: 24px;
-
-	color: #FFFFFF;
-`
-
 const Input = styled.input`
 	width: 88%;
 	height: 58px;
-	margin: 0 6vw 4px;
+	margin: 0 6vw 10px;
 	padding-left: 13px;
 
 	font-size: 20px;
@@ -140,19 +129,25 @@ const Input = styled.input`
 const Button = styled.button`
 	width: 88%;
 	height: 46px;
-	margin: 15px 6vw;
+	margin: 0px 6vw;
 
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 23px;
-
+	
 	border-radius: 5px;
+	background: #1877F2;
+	
+	font-weight: bold;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 33px;
 `
 
 const RedirectP = styled.p`
-	font-weight: bold;
-	font-size: 15px;
-	line-height: 18px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 20px;
+	text-decoration-line: underline;
 
 	color: #FFFFFF;
 `
