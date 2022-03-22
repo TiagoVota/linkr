@@ -24,7 +24,7 @@ function SignUp(){
 		setFormData(newFormData)
 	}
 
-	function handleSubmit(event){
+	function handleSubmit(event) {
 		event.preventDefault()
 		
 		const body = {

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 
 import useAuth from '../../hooks/useAuth'
 import { handleValidation } from '../../validations/handleValidation'
@@ -14,7 +13,7 @@ import Logo from '../../components/Logo'
 import LogoMobile from '../../components/LogoMobile'
 
 
-const Login = () => {
+function Login() {
 	const { auth, login } = useAuth()
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
@@ -24,14 +23,14 @@ const Login = () => {
 		if (auth & auth?.token) goHomepage()
 	}, [])
 
-	const changeFormData = (atribute, value) => {
+	function changeFormData (atribute, value) {
 		const newFormData = { ...formData }
 		newFormData[atribute] = value
 
 		setFormData(newFormData)
 	}
 
-	const handleSubmit = (event) => {
+	function handleSubmit(event) {
 		event.preventDefault()
 
 		const body = {
@@ -39,7 +38,7 @@ const Login = () => {
 			password: formData.password
 		}
 		
-		const {isValid, error} = handleValidation(body, loginSchema)
+		const { isValid, error } = handleValidation(body, loginSchema)
 		if (!isValid) return errorModal(error)
 
 		api.postLogin(body)
@@ -50,7 +49,7 @@ const Login = () => {
 			}).catch(({ request: { status }}) => handleFailLogin(status))
 	}
 
-	const handleFailLogin = (status) => {
+	function handleFailLogin(status) {
 		const msgStatus = {
 			401: 'Senha incorreta!',
 			404: 'E-mail não encontrado!',
@@ -63,7 +62,7 @@ const Login = () => {
 		errorModal(msgToSend)
 	}
 
-	const goHomepage = () => {
+	function goHomepage() {
 		setFormData({})
 		navigate('/')
 	}
