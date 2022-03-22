@@ -63,40 +63,36 @@ const SignUp = () => {
 			<Logo />
 
 			<Form onSubmit={handleSubmit}>
-				<Label htmlFor='Nome'>Nome:</Label>
-				<Input
-					id='Nome'
-					placeholder='Ex: Meu Lindo Nome'
-					type='text'
-					onChange={({ target: { value }}) => changeFormData('name', value)}
-					value={formData.name}
-					required
-				/>
-
-				<Label htmlFor='E-mail'>E-mail:</Label>
 				<Input
 					id='E-mail'
-					placeholder='Ex: meulindoemail@email.com'
+					placeholder='e-mail'
 					type='email'
 					onChange={({ target: { value }}) => changeFormData('email', value)}
 					value={formData.email}
 					required
 				/>
-
-				<Label htmlFor='Senha'>Senha:</Label>
+				
 				<Input
 					id='Senha'
-					placeholder='Ex: Senha!123'
+					placeholder='password'
 					type='text'
 					onChange={({ target: { value }}) => changeFormData('password', value)}
 					value={formData.password}
 					required
 				/>
 
-				<Label htmlFor='Confirme sua senha'>Confirme sua senha:</Label>
 				<Input
-					id='Confirme sua senha'
-					placeholder='Ex: Senha!123'
+					id='Nome'
+					placeholder='username'
+					type='text'
+					onChange={({ target: { value }}) => changeFormData('name', value)}
+					value={formData.name}
+					required
+				/>
+
+				<Input
+					id='URL'
+					placeholder='picture url'
 					type='text'
 					onChange={({ target: { value }}) => changeFormData('repeatPassword', value)}
 					value={formData.repeatPassword}
@@ -104,13 +100,13 @@ const SignUp = () => {
 				/>
 
 				<Button type='submit'>
-					Cadastrar
+					Sign Up
 				</Button>
 			</Form>
 
-			<Link to='/auth/login'>
+			<Link to='/'>
 				<RedirectP>
-					Já tem uma conta? Entre agora!
+					Switch back to log in
 				</RedirectP>
 			</Link>
 		</Container>
@@ -122,22 +118,14 @@ export default SignUp
 
 
 const Form = styled.form`
-	margin: 25px 0;
-`
-
-const Label = styled.label`
-	margin-left: 6%;
-
-	font-size: 20px;
-	line-height: 24px;
-
-	color: #FFFFFF;
+	margin-top: 80px;
+	margin-bottom: 18px;
 `
 
 const Input = styled.input`
 	width: 88%;
 	height: 58px;
-	margin: 0 6vw 4px;
+	margin: 0 6vw 10px;
 	padding-left: 13px;
 
 	font-size: 20px;
@@ -151,19 +139,24 @@ const Input = styled.input`
 const Button = styled.button`
 	width: 88%;
 	height: 46px;
-	margin: 15px 6vw;
+	margin: 0px 6vw;
 
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 23px;
-
+	
 	border-radius: 5px;
-`
-
-const RedirectP = styled.p`
+	background: #1877F2;
+	
 	font-weight: bold;
-	font-size: 15px;
-	line-height: 18px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 33px;
+`
+const RedirectP = styled.p`
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 20px;
+	text-decoration-line: underline;
 
 	color: #FFFFFF;
 `

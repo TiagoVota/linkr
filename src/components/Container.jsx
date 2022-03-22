@@ -17,10 +17,9 @@ const Box = styled.div`
 	height: 100vh;
 	
 	display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-	
-	background-color: #8C11BE;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
 
+	background-color: #333333;
 `
