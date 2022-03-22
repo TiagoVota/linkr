@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
@@ -8,22 +7,23 @@ import { postSignUp } from '../../services/api.auth'
 
 import { signUpSchema } from '../../schemas/userSchema'
 
+import { Form, Input, Button, RedirectP } from './styles'
 import Container from '../../components/Container'
 import Logo from '../../components/Logo'
 
 
-const SignUp = () => {
+function SignUp() {
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
 
-	const changeFormData = (atribute, value) => {
+	function changeFormData(atribute, value) {
 		const newFormData = { ...formData }
 		newFormData[atribute] = value
 
 		setFormData(newFormData)
 	}
 
-	const handleSubmit = (event) => {
+	function handleSubmit(event) {
 		event.preventDefault()
 
 		const body = {
@@ -39,11 +39,11 @@ const SignUp = () => {
 				successModal('Cadastro realizado!')
 				clearForm()
 
-				navigate('/auth/login')
+				navigate('/login')
 			}).catch(({ request: { status }}) => handleFailLogin(status))
 	}
 
-	const handleFailLogin = (status) => {
+	function handleFailLogin(status) {
 		const msgStatus = {
 			409: 'E-mail já cadastrado!',
 			422: 'Campo(s) inválido(s)!',
@@ -55,7 +55,7 @@ const SignUp = () => {
 		errorModal(msgToSend)
 	}
 
-	const clearForm = () => setFormData({})
+	function clearForm() { setFormData({}) }
 
 
 	return (
@@ -115,48 +115,3 @@ const SignUp = () => {
 
 
 export default SignUp
-
-
-const Form = styled.form`
-	margin-top: 80px;
-	margin-bottom: 18px;
-`
-
-const Input = styled.input`
-	width: 88%;
-	height: 58px;
-	margin: 0 6vw 10px;
-	padding-left: 13px;
-
-	font-size: 20px;
-
-	border-radius: 5px;
-	border-width: 0px;
-
-	background: #FFFFFF;
-`
-
-const Button = styled.button`
-	width: 88%;
-	height: 46px;
-	margin: 0px 6vw;
-
-	
-	border-radius: 5px;
-	background: #1877F2;
-	
-	font-weight: bold;
-	font-family: 'Oswald', sans-serif;
-	font-weight: 700;
-	font-size: 22px;
-	line-height: 33px;
-`
-const RedirectP = styled.p`
-	font-family: 'Lato', sans-serif;
-	font-weight: 400;
-	font-size: 17px;
-	line-height: 20px;
-	text-decoration-line: underline;
-
-	color: #FFFFFF;
-`

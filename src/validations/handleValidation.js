@@ -1,8 +1,5 @@
-import { messages } from 'joi-translation-pt-br'
-
-
 const handleValidation = (object, objectSchema) => {
-	const objectError = objectSchema.validate(object, { messages }).error
+	const objectError = objectSchema.validate(object).error
 	const errorMessage = objectError?.details?.[0]?.message
 	const error = Boolean(errorMessage) ? improveErrorText(errorMessage) : null
 	
