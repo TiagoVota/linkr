@@ -10,7 +10,6 @@ const postLogin = ({ email, password }) => {
 	return axios.post(`${BASE_URL}/`, body)
 }
 
-
 function postSignUp(body) {
 	return axios.post(`${BASE_URL}/sign-up`, body)
 }

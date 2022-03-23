@@ -15,7 +15,7 @@ import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../
 function SignUp(){
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
-	const [isDisable, setIsDisable] = useState(false)
+	const [disable, setDisable] = useState(false)
 
 	function changeFormData(atribute, value){
 		const newFormData = { ...formData }
@@ -26,37 +26,29 @@ function SignUp(){
 
 	function handleSubmit(event) {
 		event.preventDefault()
+		setDisable(true)
 		
 		const body = {
 			...formData,
 			email: formData.email?.toLowerCase(),
 		}
-		
+    
 		const { isValid, error } = handleValidation(body, signUpSchema)
 		if (!isValid) return errorModal(error)
 
 		const promise = api.postSignUp(body)
 
-		promise.then(() => {
+		promise.then((response) => {
 			successModal('Cadastro realizado!')
 			clearForm()
 
 			navigate('/')
 		})
 		
-		promise.catch(({ request: { status }}) => handleFailLogin(status))
-	}
-
-	function handleFailLogin(status){
-		const msgStatus = {
-			409: 'E-mail já cadastrado!',
-			422: 'Campo(s) inválido(s)!',
-			500: 'Erro nosso, tente novamente mais tarde, por favor 🥺'
-		}
-
-		const msgToSend = msgStatus[status] || 'Problema com o servidor 🥺'
-
-		errorModal(msgToSend)
+		promise.catch((error) => {
+			errorModal(error.response.data)
+			setDisable(false)
+		})
 	}
 
 	function clearForm(){
@@ -76,17 +68,17 @@ function SignUp(){
 						type='email'
 						onChange={({ target: { value }}) => changeFormData('email', value)}
 						value={formData.email}
-						isDisable={isDisable}
+						isDisable={disable}
 						required
 					/>
 					
 					<Input
 						id='Senha'
 						placeholder='password'
-						type='text'
+						type='password'
 						onChange={({ target: { value }}) => changeFormData('password', value)}
 						value={formData.password}
-						isDisable={isDisable}
+						isDisable={disable}
 						required
 					/>
 
@@ -94,9 +86,9 @@ function SignUp(){
 						id='Nome'
 						placeholder='username'
 						type='text'
-						onChange={({ target: { value }}) => changeFormData('name', value)}
-						value={formData.name}
-						isDisable={isDisable}
+						onChange={({ target: { value }}) => changeFormData('username', value)}
+						value={formData.username}
+						isDisable={disable}
 						required
 					/>
 
@@ -104,13 +96,13 @@ function SignUp(){
 						id='URL'
 						placeholder='picture url'
 						type='text'
-						onChange={({ target: { value }}) => changeFormData('repeatPassword', value)}
-						value={formData.repeatPassword}
-						isDisable={isDisable}
+						onChange={({ target: { value }}) => changeFormData('picture', value)}
+						value={formData.picture}
+						isDisable={disable}
 						required
 					/>
 
-					<Button type='submit' isDisable={isDisable}>
+					<Button type='submit' isDisable={disable}>
 						Sign Up
 					</Button>
 				</Form>

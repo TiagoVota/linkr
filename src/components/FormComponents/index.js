@@ -43,11 +43,8 @@ const Input = styled.input`
 	border-radius: 5px;
 	border-width: 0px;
 
-	background: #FFFFFF;
-
  background-color: ${p => p.isDisable ? '#bababa' : '#FFFFFF'};
-	pointer-events: ${p => p.isDisable ? 'none' : 'all'};
-
+	${p => p.isDisable && 'pointer-events: none;'}
 
 `
 
@@ -66,6 +63,7 @@ const Button = styled.button`
 
 	opacity: ${p => p.isDisable ? 0.7 : 1};
 
+ ${p => p.isDisable && 'pointer-events: none;'}
 	cursor: ${p => p.isDisable ? 'not-allowed' : 'pointer'};
 `
 
