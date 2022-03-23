@@ -4,23 +4,20 @@ import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import { postLogin } from '../../services/api.auth'
+import api from '../../services/api.auth'
 
-import { loginSchema } from '../../schemas/userSchema'
+import authSchema from '../../schemas/authSchema'
 
-import { Form, Input, Button, RedirectP } from './styles'
-import Container from '../../components/Container'
+import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
 import Logo from '../../components/Logo'
+import LogoMobile from '../../components/LogoMobile'
 
 
 function Login() {
 	const { auth, login } = useAuth()
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
-
-	useEffect(() => {
-		if (auth & auth?.token) goHomepage()
-	}, [])
+	const [disable, setDisable] = useState(false)
 
 	function changeFormData (atribute, value) {
 		const newFormData = { ...formData }
@@ -31,75 +28,66 @@ function Login() {
 
 	function handleSubmit(event) {
 		event.preventDefault()
+		setDisable(true)
 
 		const body = {
 			email: formData.email?.toLowerCase(),
 			password: formData.password
 		}
 		
-		const { isValid, error } = handleValidation(body, loginSchema)
+		const { isValid, error } = handleValidation(body, authSchema)
 		if (!isValid) return errorModal(error)
 
-		postLogin(body)
-			.then(({ data: userInfo }) => {
-				successModal('Login realizado!')
-				login(userInfo)
-				goHomepage()
-			}).catch(({ request: { status }}) => handleFailLogin(status))
+		const promise = api.postLogin(body)
+
+		promise.then((response) => {
+			successModal('Login realizado!')
+			login(response.data.token)
+			navigate('/timeline')
+		})
+		
+		promise.catch((error) => {
+			errorModal(error.response.data)
+			setDisable(false)
+		})
 	}
-
-	function handleFailLogin(status) {
-		const msgStatus = {
-			401: 'Senha incorreta!',
-			404: 'E-mail não encontrado!',
-			422: 'Campo(s) inválido(s)!',
-			500: 'Erro nosso, tente novamente mais tarde, por favor 🥺'
-		}
-
-		const msgToSend = msgStatus[status] || 'Problema com o servidor 🥺'
-
-		errorModal(msgToSend)
-	}
-
-	function goHomepage() {
-		setFormData({})
-		navigate('/')
-	}
-
 
 	return (
 		<Container>
 			<Logo />
+			<LogoMobile/>
 
-			<Form onSubmit={handleSubmit}>
-				<Input
-					id='E-mail'
-					placeholder='e-mail'
-					type='email'
-					onChange={({ target: { value }}) => changeFormData('email', value)}
-					value={formData.email}
-					required
-				/>
+			<FormContainer>
+				<Form onSubmit={handleSubmit}>
+					<Input
+						id='E-mail'
+						placeholder='e-mail'
+						type='email'
+						onChange={({ target: { value }}) => changeFormData('email', value)}
+						value={formData.email}
+						isDisable={disable}
+						required
+					/>
 
-				<Input
-					id='Senha'
-					placeholder='password'
-					type='password'
-					onChange={({ target: { value }}) => changeFormData('password', value)}
-					value={formData.password}
-					required
-				/>
+					<Input
+						id='Senha'
+						placeholder='password'
+						type='password'
+						onChange={({ target: { value }}) => changeFormData('password', value)}
+						value={formData.password}
+						isDisable={disable}
+						required
+					/>
 
-				<Button type='submit'>
-					Log In
-				</Button>
-			</Form>
+					<Button type='submit' isDisable={disable}>
+						Log In
+					</Button>
+				</Form>
 
-			<Link to='/sign-up'>
-				<RedirectP>
+				<RedirectLink to='/sign-up' >
 					First time? Create an account!
-				</RedirectP>
-			</Link>
+				</RedirectLink>
+			</FormContainer>
 		</Container>
 	)
 }

@@ -43,10 +43,10 @@ const GlobalStyle = createGlobalStyle`
 			color: #575757;
 		}
 
-		:focus {
+		/* :focus {
 			color: #8C11BE;
 			outline: none;
-		}
+		} */
 	}
 
 	a {
