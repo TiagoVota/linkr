@@ -5,7 +5,7 @@ import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
 import api from '../../services/api.auth'
 
-import { signUpSchema } from '../../schemas/userSchema'
+import signUpSchema from '../../schemas/userSchema'
 
 import Logo from '../../components/Logo/index'
 import LogoMobile from '../../components/LogoMobile/index'
@@ -38,7 +38,7 @@ function SignUp(){
 
 		const promise = api.postSignUp(body)
 
-		promise.then((response) => {
+		promise.then(() => {
 			successModal('Cadastro realizado!')
 			clearForm()
 

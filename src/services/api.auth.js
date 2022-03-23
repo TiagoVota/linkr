@@ -4,9 +4,7 @@ import { makeConfig } from '../helpers/configHelper'
 
 import BASE_URL from './baseUrl'
 
-const postLogin = ({ email, password }) => {
-	const body = { email, password }
-
+function postLogin(body) {
 	return axios.post(`${BASE_URL}/`, body)
 }
 

@@ -6,7 +6,7 @@ import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
 import api from '../../services/api.auth'
 
-import { loginSchema } from '../../schemas/userSchema'
+import authSchema from '../../schemas/authSchema'
 
 import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
 import Logo from '../../components/Logo'
@@ -17,11 +17,7 @@ function Login() {
 	const { auth, login } = useAuth()
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
-	const [isDisable, setIsDisable] = useState(false)
-
-	useEffect(() => {
-		if (auth & auth?.token) goHomepage()
-	}, [])
+	const [disable, setDisable] = useState(false)
 
 	function changeFormData (atribute, value) {
 		const newFormData = { ...formData }
@@ -32,39 +28,28 @@ function Login() {
 
 	function handleSubmit(event) {
 		event.preventDefault()
+		setDisable(true)
 
 		const body = {
 			email: formData.email?.toLowerCase(),
 			password: formData.password
 		}
 		
-		const { isValid, error } = handleValidation(body, loginSchema)
+		const { isValid, error } = handleValidation(body, authSchema)
 		if (!isValid) return errorModal(error)
 
-		api.postLogin(body)
-			.then(({ data: userInfo }) => {
-				successModal('Login realizado!')
-				login(userInfo)
-				goHomepage()
-			}).catch(({ request: { status }}) => handleFailLogin(status))
-	}
+		const promise = api.postLogin(body)
 
-	function handleFailLogin(status) {
-		const msgStatus = {
-			401: 'Senha incorreta!',
-			404: 'E-mail não encontrado!',
-			422: 'Campo(s) inválido(s)!',
-			500: 'Erro nosso, tente novamente mais tarde, por favor 🥺'
-		}
-
-		const msgToSend = msgStatus[status] || 'Problema com o servidor 🥺'
-
-		errorModal(msgToSend)
-	}
-
-	function goHomepage() {
-		setFormData({})
-		navigate('/')
+		promise.then((response) => {
+			successModal('Login realizado!')
+			login(response.data.token)
+			navigate('/timeline')
+		})
+		
+		promise.catch((error) => {
+			errorModal(error.response.data)
+			setDisable(false)
+		})
 	}
 
 	return (
@@ -80,7 +65,7 @@ function Login() {
 						type='email'
 						onChange={({ target: { value }}) => changeFormData('email', value)}
 						value={formData.email}
-						isDisable={isDisable}
+						isDisable={disable}
 						required
 					/>
 
@@ -90,11 +75,11 @@ function Login() {
 						type='password'
 						onChange={({ target: { value }}) => changeFormData('password', value)}
 						value={formData.password}
-						isDisable={isDisable}
+						isDisable={disable}
 						required
 					/>
 
-					<Button type='submit' isDisable={isDisable}>
+					<Button type='submit' isDisable={disable}>
 						Log In
 					</Button>
 				</Form>
