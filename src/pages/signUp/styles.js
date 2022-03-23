@@ -25,7 +25,6 @@ const Button = styled.button`
 	height: 46px;
 	margin: 0px 6vw;
 
-	
 	border-radius: 5px;
 	background: #1877F2;
 	
