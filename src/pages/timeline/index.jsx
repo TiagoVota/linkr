@@ -1,34 +1,40 @@
 import { useState } from 'react'
-import { Container, CreatePost, Link, Message, Form, Button } from './styles'
+import { Container, CreatePost, Link, Message, Form, Button, Avatar } from './styles'
 
 import Topbar from '../../components/Topbar/Topbar'
+import useAuth from '../../hooks/useAuth'
 
 
 function Timeline() {
 	const [link, setLink] = useState('')
 	const [message, setmessage] = useState('')
+	const {picture} = useAuth()
 
 	return (
-		<Container>
-			<CreatePost>
-				<div>What are you going to share today?</div>
-				<Form onSubmit={() => {}}>
-					<Link 
-						type="url" 
-						value={link} 
-						onChange={(e) => setLink(e.target.value)} 
-						placeholder='http://...'>
-					</Link>
-					<Message 
-						type="text" 
-						value={message}
-						onChange={(e) => setmessage(e.target.value)} 
-						placeholder='Awesome article about #javascript'>
-					</Message>
-					<Button type='submit' >Publish</Button>
-				</Form>
-			</CreatePost>
-		</Container>
+		<>
+			<Topbar></Topbar>
+			<Container>
+				<CreatePost>
+					<Avatar> <img src = {picture}/> </Avatar>
+					<div>What are you going to share today?</div>
+					<Form onSubmit={() => {}}>
+						<Link 
+							type="url" 
+							value={link} 
+							onChange={(e) => setLink(e.target.value)} 
+							placeholder='http://...'>
+						</Link>
+						<Message 
+							type="text" 
+							value={message}
+							onChange={(e) => setmessage(e.target.value)} 
+							placeholder='Awesome article about #javascript'>
+						</Message>
+						<Button type='submit' >Publish</Button>
+					</Form>
+				</CreatePost>
+			</Container>
+		</>
 	)
 }
 

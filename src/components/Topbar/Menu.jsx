@@ -56,11 +56,11 @@ const Container = styled.header`
 
 const Avatar = styled.div`
 	img{
- width: 53px;
-	height: 53px;
-	border-radius: 26px;
-	object-fit: cover;
-	cursor: pointer;
+		width: 53px;
+		height: 53px;
+		border-radius: 26px;
+		object-fit: cover;
+		cursor: pointer;
 	}
 
  @media (max-width: 700px) {
