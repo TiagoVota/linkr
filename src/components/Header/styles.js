@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
+import { headerHeight } from '../../utils/sharedSizes'
+
 
 const Container = styled.header`
 	width: 100vw;
-	height: 72px;
+	height: ${headerHeight};
 	padding: 10px 0;
 
 	position: fixed;
@@ -20,6 +22,10 @@ const Container = styled.header`
 	color: #FFFFFF;
 
 	background-color: #151515;
+
+	@media(max-width: 650px) {
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
 `
 
 const Logo = styled.h1`
@@ -32,6 +38,13 @@ const Logo = styled.h1`
 	letter-spacing: 0.05em;
 
 	color: #FFFFFF;
+
+	@media(max-width: 650px) {
+		padding-left: 17px;
+
+		font-size: 45px;
+		line-height: 50px;
+	}
 `
 
 

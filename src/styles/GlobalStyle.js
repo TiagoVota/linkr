@@ -7,15 +7,15 @@ const GlobalStyle = createGlobalStyle`
   }
 	
   html {
-		font-family: 'Raleway', sans-serif;
+		font-family: 'Lato', sans-serif;
 		font-style: normal;
 		font-weight: normal;
-    background-color: #FFFFFF;
+    background-color: #333333;
   }
 	
 	button, input {
 		border-width: 0px;
-		font-family: 'Raleway', sans-serif;
+		font-family: 'Lato', sans-serif;
 		font-style: normal;
 		font-weight: normal;
 	}
