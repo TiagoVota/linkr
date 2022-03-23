@@ -74,7 +74,8 @@ const Link = styled.textarea`
 	margin-right: 15px;
 
 	font-family: 'Lato', sans-serif;
-
+	resize: none;
+	
 	::placeholder {
 		font-family: 'Lato', sans-serif;
 		font-style: normal;
@@ -95,6 +96,7 @@ const Message = styled.textarea`
 	margin-right: 15px;
 
 	font-family: 'Lato', sans-serif;
+	resize: none;
 
 	::placeholder {
 		font-family: 'Lato', sans-serif;
