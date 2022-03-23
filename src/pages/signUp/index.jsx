@@ -1,22 +1,23 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import { postSignUp } from '../../services/api.auth'
+import api from '../../services/api.auth'
 
-import { signUpSchema } from '../../schemas/userSchema'
+import signUpSchema from '../../schemas/userSchema'
 
-import { Form, Input, Button, RedirectP } from './styles'
-import Container from '../../components/Container'
-import Logo from '../../components/Logo'
+import Logo from '../../components/Logo/index'
+import LogoMobile from '../../components/LogoMobile/index'
+import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
 
 
-function SignUp() {
+function SignUp(){
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
+	const [disable, setDisable] = useState(false)
 
-	function changeFormData(atribute, value) {
+	function changeFormData(atribute, value){
 		const newFormData = { ...formData }
 		newFormData[atribute] = value
 
@@ -25,93 +26,94 @@ function SignUp() {
 
 	function handleSubmit(event) {
 		event.preventDefault()
-
+		setDisable(true)
+		
 		const body = {
 			...formData,
 			email: formData.email?.toLowerCase(),
 		}
-		
+    
 		const { isValid, error } = handleValidation(body, signUpSchema)
 		if (!isValid) return errorModal(error)
 
-		postSignUp(body)
-			.then(() => {
-				successModal('Cadastro realizado!')
-				clearForm()
+		const promise = api.postSignUp(body)
 
-				navigate('/login')
-			}).catch(({ request: { status }}) => handleFailLogin(status))
+		promise.then(() => {
+			successModal('Cadastro realizado!')
+			clearForm()
+
+			navigate('/')
+		})
+		
+		promise.catch((error) => {
+			errorModal(error.response.data)
+			setDisable(false)
+		})
 	}
 
-	function handleFailLogin(status) {
-		const msgStatus = {
-			409: 'E-mail já cadastrado!',
-			422: 'Campo(s) inválido(s)!',
-			500: 'Erro nosso, tente novamente mais tarde, por favor 🥺'
-		}
-
-		const msgToSend = msgStatus[status] || 'Problema com o servidor 🥺'
-
-		errorModal(msgToSend)
-	}
-
-	function clearForm() { setFormData({}) }
-
+	function clearForm(){
+		setFormData({})
+	} 
 
 	return (
 		<Container>
 			<Logo />
+			<LogoMobile/>
 
-			<Form onSubmit={handleSubmit}>
-				<Input
-					id='E-mail'
-					placeholder='e-mail'
-					type='email'
-					onChange={({ target: { value }}) => changeFormData('email', value)}
-					value={formData.email}
-					required
-				/>
-				
-				<Input
-					id='Senha'
-					placeholder='password'
-					type='text'
-					onChange={({ target: { value }}) => changeFormData('password', value)}
-					value={formData.password}
-					required
-				/>
+			<FormContainer>
+				<Form onSubmit={handleSubmit}>
+					<Input
+						id='E-mail'
+						placeholder='e-mail'
+						type='email'
+						onChange={({ target: { value }}) => changeFormData('email', value)}
+						value={formData.email}
+						isDisable={disable}
+						required
+					/>
+					
+					<Input
+						id='Senha'
+						placeholder='password'
+						type='password'
+						onChange={({ target: { value }}) => changeFormData('password', value)}
+						value={formData.password}
+						isDisable={disable}
+						required
+					/>
 
-				<Input
-					id='Nome'
-					placeholder='username'
-					type='text'
-					onChange={({ target: { value }}) => changeFormData('name', value)}
-					value={formData.name}
-					required
-				/>
+					<Input
+						id='Nome'
+						placeholder='username'
+						type='text'
+						onChange={({ target: { value }}) => changeFormData('username', value)}
+						value={formData.username}
+						isDisable={disable}
+						required
+					/>
 
-				<Input
-					id='URL'
-					placeholder='picture url'
-					type='text'
-					onChange={({ target: { value }}) => changeFormData('repeatPassword', value)}
-					value={formData.repeatPassword}
-					required
-				/>
+					<Input
+						id='URL'
+						placeholder='picture url'
+						type='text'
+						onChange={({ target: { value }}) => changeFormData('picture', value)}
+						value={formData.picture}
+						isDisable={disable}
+						required
+					/>
 
-				<Button type='submit'>
-					Sign Up
-				</Button>
-			</Form>
+					<Button type='submit' isDisable={disable}>
+						Sign Up
+					</Button>
+				</Form>
 
-			<Link to='/'>
-				<RedirectP>
+				<RedirectLink to='/'>
 					Switch back to log in
-				</RedirectP>
-			</Link>
+				</RedirectLink>
+			</FormContainer>
+
 		</Container>
 	)
 }
-
 
 export default SignUp

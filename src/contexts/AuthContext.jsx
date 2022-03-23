@@ -13,7 +13,6 @@ const AuthProvider = ({ children }) => {
 		localStorage.setItem('auth', JSON.stringify(authData))
 	}
 
-
 	return (
 		<AuthContext.Provider value={{ auth, login }}>
 			{children}
