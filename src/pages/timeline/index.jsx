@@ -5,6 +5,9 @@ import Topbar from '../../components/Topbar/Topbar'
 
 
 function Timeline() {
+	const [link, setLink] = useState('')
+	const [message, setmessage] = useState('')
+
 	return (
 		<>
 			<Topbar></Topbar>
