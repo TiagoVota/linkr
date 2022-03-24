@@ -17,9 +17,9 @@ function LogoMobile(){
 export default LogoMobile
 
 const LogoContainer = styled.div`
-  @media(max-width: 700px) {
+  @media(max-width: 650px) {
     width: 100%;
-	  height: 175px;
+		height: 175px;
 
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@ const Title = styled.h1`
 
   display: none;
 
-  @media(max-width: 700px) {
+  @media(max-width: 650px) {
     display: initial;
   }
 `
@@ -58,7 +58,7 @@ const Headline = styled.h1`
 
   display: none;
 
-  @media(max-width: 700px) {
+  @media(max-width: 650px) {
     display: initial;
   }
 `

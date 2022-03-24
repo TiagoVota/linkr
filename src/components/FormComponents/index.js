@@ -18,7 +18,7 @@ const FormContainer = styled.div`
 	justify-content: center;
 	gap: 15px;
 
-	@media(max-width: 700px) {
+	@media(max-width: 650px) {
 		width: 100%;
 		margin-top: 175px;
 	}
@@ -43,7 +43,7 @@ const Input = styled.input`
 	border-radius: 5px;
 	border-width: 0px;
 
- background-color: ${p => p.isDisable ? '#bababa' : '#FFFFFF'};
+	background-color: ${p => p.isDisable ? '#BABABA' : '#FFFFFF'};
 	${p => p.isDisable && 'pointer-events: none;'}
 
 `
@@ -55,7 +55,7 @@ const Button = styled.button`
 	border-radius: 5px;
 	background: #1877F2;
 	
-	font-weight: bold;
+	font-weight: 700;
 	font-family: 'Oswald', sans-serif;
 	font-weight: 700;
 	font-size: 22px;
@@ -63,7 +63,7 @@ const Button = styled.button`
 
 	opacity: ${p => p.isDisable ? 0.7 : 1};
 
- ${p => p.isDisable && 'pointer-events: none;'}
+	${p => p.isDisable && 'pointer-events: none;'}
 	cursor: ${p => p.isDisable ? 'not-allowed' : 'pointer'};
 `
 
@@ -75,6 +75,10 @@ const RedirectLink = styled(Link)`
 	text-decoration-line: underline;
 
 	color: #FFFFFF;
+
+	:hover {
+		color: #1877F2;
+	}
 `
 
 export {

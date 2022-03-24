@@ -7,22 +7,22 @@ const GlobalStyle = createGlobalStyle`
   }
 	
   html {
-		font-family: 'Raleway', sans-serif;
+		font-family: 'Lato', sans-serif;
 		font-style: normal;
 		font-weight: normal;
-    background-color: #FFFFFF;
+    background-color: #333333;
   }
 	
 	button, input {
 		border-width: 0px;
-		font-family: 'Raleway', sans-serif;
+		font-family: 'Lato', sans-serif;
 		font-style: normal;
 		font-weight: normal;
 	}
 
 	button {
 		color: #FFFFFF;
-		background-color: #A328D6;
+		background-color: #1877F2;
 		opacity: ${p => p.isDisable ? 0.7 : 1};
 
 		cursor: ${p => p.isDisable ? 'none' : 'pointer'};
@@ -43,18 +43,24 @@ const GlobalStyle = createGlobalStyle`
 			color: #575757;
 		}
 
-		/* :focus {
-			color: #8C11BE;
+		:focus {
+			color: #1877F2;
 			outline: none;
-		} */
+		}
 	}
 
 	a {
 		text-decoration: none;
+
+		> * {
+			:hover {
+				color: #1877F2;
+			}
+		}
 	}
 
 	strong {
-		font-weight: bold;
+		font-weight: 700;
 	}
 `
 
