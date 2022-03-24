@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 const containerHeight = '155px'
 const containerMobileHeight = '115px'
+const imgWidth = '154px'
+const imgMobileWidth = '95px'
 
 const Container = styled.div`
 	width: 100%;
@@ -21,7 +23,7 @@ const Container = styled.div`
 `
 
 const InfoWrapper = styled.div`
-	width: 100%;
+	width: calc(100% - ${imgWidth});
 	padding: 24px 19px 23px;
 
 	color: #CECECE;
@@ -32,6 +34,7 @@ const InfoWrapper = styled.div`
 	border-radius: 11px 0 0 11px;
 
 	@media(max-width: 650px) {
+		width: calc(100% - ${imgMobileWidth});
 		padding: 7px 7px 8px 11px;
 	}
 `
@@ -73,13 +76,13 @@ const LinkText = styled.h6`
 `
 
 const LinkImg = styled.img`
-	width: 154px;
+	width: ${imgWidth};
 	height: ${containerHeight};
 
 	border-radius: 0px 12px 13px 0px;
 	
 	@media(max-width: 650px) {
-		width: 95px;
+		width: ${imgMobileWidth};
 		height: ${containerMobileHeight};
 	}
 `

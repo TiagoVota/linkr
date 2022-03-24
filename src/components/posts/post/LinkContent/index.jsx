@@ -1,4 +1,4 @@
-import { openInNewTab } from '../../../utils/openUrl'
+import { openInNewTab } from '../../../../utils/openUrl'
 
 import {
 	Container,

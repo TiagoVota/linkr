@@ -8,7 +8,7 @@ import BASE_URL from './baseUrl'
 const AUTH_URL = `${BASE_URL}/posts`
 
 const getTimelinePosts = ({ token }) => {
-	return axios.get(`${AUTH_URL}`, makeConfig(token))
+	return axios.get(`${AUTH_URL}/timeline`, makeConfig(token))
 }
 
 

@@ -42,7 +42,7 @@ function Login() {
 
 		promise.then((response) => {
 			successModal('Login realizado!')
-			login(response.data.token)
+			login(response.data)
 			navigate('/timeline')
 		})
 		
