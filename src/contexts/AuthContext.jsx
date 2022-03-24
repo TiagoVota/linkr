@@ -1,22 +1,27 @@
 import { useState, createContext } from 'react'
 
+import defaultPicture from '../assets/images/profile-nav-signup.png'
+
+
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
+	const defaultAuth = { authDetails: { picture: defaultPicture } }
 	const persistedAuth = JSON.parse(localStorage.getItem('auth'))
-	const persistedPicture = JSON.parse(localStorage.getItem('picture'))
-	const [auth, setAuth] = useState(persistedAuth)
-	const [picture, setPicture] = useState(persistedPicture)
+	const [auth, setAuth] = useState(persistedAuth || defaultAuth)
 
 	const login = (authData) => {
-		setAuth(authData.token)
-		setPicture(authData.authDetails.picture)
-		localStorage.setItem('auth', JSON.stringify(authData.token))
-		localStorage.setItem('picture', JSON.stringify(authData.authDetails.picture))
+		setAuth(authData)
+		localStorage.setItem('auth', JSON.stringify(authData))
+	}
+
+	const logout = () => {
+		setAuth(defaultAuth)
+		localStorage.removeItem('auth')
 	}
 
 	return (
-		<AuthContext.Provider value={{ auth, picture, login }}>
+		<AuthContext.Provider value={{ auth, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	)

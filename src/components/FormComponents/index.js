@@ -18,7 +18,7 @@ const FormContainer = styled.div`
 	justify-content: center;
 	gap: 15px;
 
-	@media(max-width: 700px) {
+	@media(max-width: 650px) {
 		width: 100%;
 		margin-top: 175px;
 	}

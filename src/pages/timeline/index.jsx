@@ -15,10 +15,10 @@ function Timeline() {
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 
-	function handleFailGetPosts(status) {
+	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
-			401: 'Access denied, please try to login again!',
-			500: 'Sorry, problems with our server, please refresh the page 🥺'
+			401: 'Access denied, please try to <a href=\'/\'>login</a> again!',
+			500: 'Sorry, problems with our server. Refresh the page or try later, please 🥺'
 		}
 		const defaultMsg = 'An error occurred while trying to fetch the posts, please refresh the page 🥺'
 

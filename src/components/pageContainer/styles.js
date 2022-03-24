@@ -4,8 +4,8 @@ import { headerHeight } from '../../utils/sharedSizes'
 
 
 const Container = styled.div`
-	width: 100vw;
-	height: calc(100vh - ${headerHeight});
+	width: 100%;
+	height: calc(100% - ${headerHeight});
 
 	margin-top: ${headerHeight};
 	

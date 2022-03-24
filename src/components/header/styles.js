@@ -4,13 +4,14 @@ import { headerHeight } from '../../utils/sharedSizes'
 
 
 const Container = styled.header`
-	width: 100vw;
+	width: 100%;
 	height: ${headerHeight};
 	padding: 10px 0;
 
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 1;
 
 	display: flex;
 	justify-content: space-between;
