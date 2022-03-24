@@ -12,7 +12,7 @@ const Container = styled.div`
 
 `
 
-const CreatePost = styled.div`
+const Create = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -138,5 +138,5 @@ const Avatar = styled.div`
 	}
 `
 export {
-	Container, CreatePost, Link, Message, Form, Button, Avatar
+	Container, Create, Link, Message, Form, Button, Avatar
 }
