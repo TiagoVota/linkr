@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	strong {
-		font-weight: bold;
+		font-weight: 700;
 	}
 `
 
