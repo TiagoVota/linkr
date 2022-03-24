@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import ReactHashtag from '@mdnm/react-hashtag'
 
 import LinkContent from './LinkContent'
 
@@ -10,6 +11,7 @@ import {
 	PublicationContainer,
 	UsernameText
 } from './styles'
+import { removeHashtag } from '../../../utils/strManipulate'
 
 
 const Post = ({ postInfo }) => {
@@ -23,6 +25,10 @@ const Post = ({ postInfo }) => {
 
 	function goToUserPost() { navigate(`/users/${userId}`) }
 
+	function handleHashtagClick(hashtag) {
+		navigate(`/hashtag/${removeHashtag(hashtag)}`)
+	}
+
 	return (
 		<Container>
 			<ActionsContainer>
@@ -34,9 +40,15 @@ const Post = ({ postInfo }) => {
 			</ActionsContainer>
 
 			<PublicationContainer>
-				<UsernameText onClick={goToUserPost}>{username}</UsernameText>
+				<UsernameText onClick={goToUserPost}>
+					{username}
+				</UsernameText>
 
-				<MessageText>{message}</MessageText>
+				<MessageText>
+					<ReactHashtag onHashtagClick={handleHashtagClick}>
+						{message}
+					</ReactHashtag>
+				</MessageText>
 
 				<LinkContent postInfo={postInfo}/>
 			</PublicationContainer>

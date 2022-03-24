@@ -70,6 +70,7 @@ const PublicationContainer = styled.div`
 `
 
 const UsernameText = styled.h2`
+	width: 85%;
 	margin-bottom: 10px;
 
 	font-size: 19px;
@@ -94,6 +95,17 @@ const MessageText = styled.h3`
 	line-height: 20px;
 
 	color: #B7B7B7;
+
+	> span {
+		font-weight: 700;
+		color: #FFFFFF;
+
+		:hover {
+			cursor: pointer;
+
+			color: #1877F2;
+		}
+	}
 
 	@media(max-width: 650px) {
 		font-size: 15px;
