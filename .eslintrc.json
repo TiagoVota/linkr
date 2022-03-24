@@ -1,8 +1,8 @@
 {
 	"env": {
 		"browser": true,
-		"node": true,
-		"es2021": true
+		"es2021": true,
+		"node": true
 	},
 	"extends": [
 		"eslint:recommended",
@@ -11,7 +11,7 @@
 	],
 	"parserOptions": {
 		"ecmaFeatures": {
-			"jsx": true
+				"jsx": true
 		},
 		"ecmaVersion": 12,
 		"sourceType": "module"
@@ -41,8 +41,8 @@
 		"no-extra-boolean-cast": "off"
 	},
 	"settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
+		"react": {
+			"version": "detect"
+		}
+	}
 }

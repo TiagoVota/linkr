@@ -32,7 +32,7 @@ const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media(max-width: 700px) {
+  @media(max-width: 650px) {
 		display: none;
 	}
 `

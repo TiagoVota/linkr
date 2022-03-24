@@ -1,12 +1,14 @@
-import Loader from 'react-loader-spinner'
-import styled from 'styled-components'
+import * as Loaders from 'react-loader-spinner'
+
+import { Container } from './styles'
 
 
 const LoaderSpinner = ({ type, color, height, width, heightDiscount }) => {
+	const Loader = Loaders[type || 'ThreeDots']
+	
 	return (
 		<Container heightDiscount={heightDiscount || '0px'}>
 			<Loader
-				type={type || 'ThreeDots'}
 				color={color || '#FFFFFF'}
 				height={height || width || '100'}
 				width={width || height || '100'}
@@ -19,11 +21,4 @@ const LoaderSpinner = ({ type, color, height, width, heightDiscount }) => {
 export default LoaderSpinner
 
 
-const Container = styled.div`
-	width: 100%;
-	height: calc(100% - ${p => p.heightDiscount});
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`
+

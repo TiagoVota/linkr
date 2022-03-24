@@ -1,26 +1,36 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import useAuth from '../../hooks/useAuth'
+
+import api from '../../services/api.auth'
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import api from '../../services/api.auth'
 
 import authSchema from '../../schemas/authSchema'
 
-import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
 import Logo from '../../components/Logo'
 import LogoMobile from '../../components/LogoMobile'
 
+import {
+	Button,
+	Container,
+	Form,
+	FormContainer,
+	Input,
+	RedirectLink
+} from '../../components/FormComponents'
+
 
 function Login() {
-	const { auth, login } = useAuth()
+	const { auth: { token }, login } = useAuth()
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
 	const [disable, setDisable] = useState(false)
+
 	useEffect(() => {
-		if(auth) navigate('/timeline')
-	}, [])
+		if (token) navigate('/timeline')
+	}, [token])
 
 	function changeFormData (atribute, value) {
 		const newFormData = { ...formData }
