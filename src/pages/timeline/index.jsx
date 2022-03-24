@@ -7,7 +7,7 @@ function Timeline() {
 		<>
 			<Topbar></Topbar>
 			<Container>
-				<CreatePost></CreatePost>
+				<CreatePost/>
 			</Container>
 		</>
 	)

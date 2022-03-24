@@ -16,7 +16,7 @@ function CreatePost() {
 
 		const body = {
 			link: link,
-			message: message
+			message: message,
 		}
 
 		const config =  {
