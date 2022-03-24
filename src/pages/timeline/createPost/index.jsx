@@ -1,10 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Create, Link, Message, Form, Button, Avatar } from '../styles'
-
+import { errorModal, successModal } from '../../../factories/modalFactory'
 import useAuth from '../../../hooks/useAuth'
 import api from '../../../services/api.post'
-import { errorModal, successModal } from '../../../factories/modalFactory'
-
 
 function CreatePost() {
 	const [link, setLink] = useState('')
@@ -17,7 +15,7 @@ function CreatePost() {
 		setDisable(true)
 
 		const body = {
-			url: link,
+			link: link,
 			message: message
 		}
 
@@ -28,6 +26,7 @@ function CreatePost() {
 		}
 
 		const promise = api.createPost(body, config)
+
 		promise.then((response) => {
 			successModal('Post publicado!')
 			setMessage('')
@@ -66,6 +65,5 @@ function CreatePost() {
 		</Create>
 	)
 }
-
 
 export default CreatePost
