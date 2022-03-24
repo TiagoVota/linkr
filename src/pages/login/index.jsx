@@ -18,6 +18,9 @@ function Login() {
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({})
 	const [disable, setDisable] = useState(false)
+	useEffect(() => {
+		if(auth) navigate('/timeline')
+	}, [])
 
 	function changeFormData (atribute, value) {
 		const newFormData = { ...formData }
