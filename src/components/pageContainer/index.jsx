@@ -1,16 +1,20 @@
 import Header from '../header'
 
-import { Container, ContentContainer, Title } from './styles'
+import { Container, ContentContainer, Flex, ProfilePicture, Title } from './styles'
 
 
-function PageContainer({ children: pageContent, title }) {
+function PageContainer({ children: pageContent, title, picture }) {
+
 	return (
 		<>
 			<Header />
 
 			<Container>
 				<ContentContainer>
-					<Title>{title}</Title>
+					<Flex>
+						{picture && <ProfilePicture src={picture} />}
+						<Title>{title}</Title>
+					</Flex>
 					{/*
 						TODO: REMOVER DEPOIS
 						Galera, explicação de como usar esse page Container:
