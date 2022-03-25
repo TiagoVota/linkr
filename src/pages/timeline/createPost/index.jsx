@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { Create, Link, Message, Form, Button, Avatar } from '../styles'
 import { errorModal, successModal } from '../../../factories/modalFactory'
+import { getTimelinePosts } from '../../../services/api.posts'
 import useAuth from '../../../hooks/useAuth'
 import api from '../../../services/api.post'
 
-function CreatePost() {
+function CreatePost({setPost}) {
 	const [link, setLink] = useState('')
 	const [message, setMessage] = useState('')
 	const [disable, setDisable] = useState(false)
-	const {auth, picture} = useAuth()
+	const { auth: { token } } = useAuth()
+	const {auth} = useAuth()
 
 	function handleSubmit(event) {
 		event.preventDefault()
@@ -21,7 +23,7 @@ function CreatePost() {
 
 		const config =  {
 			headers: {
-				'Authorization': `Bearer ${auth}`
+				'Authorization': `Bearer ${token}`
 			}
 		}
 
@@ -32,8 +34,10 @@ function CreatePost() {
 			setMessage('')
 			setLink('')
 			setDisable(false)
+			getTimelinePosts({ token })
+				.then(({ data }) => setPost(data))
 		})
-		
+
 		promise.catch((error) => {
 			errorModal('Houve um erro ao publicar seu link')
 			setDisable(false)
@@ -42,7 +46,7 @@ function CreatePost() {
 
 	return (
 		<Create>
-			<Avatar> <img src = {picture}/> </Avatar>
+			<Avatar> <img src = {auth.authDetails.picture}/> </Avatar>
 			<div>What are you going to share today?</div>
 			<Form onSubmit={handleSubmit}>
 				<Link 

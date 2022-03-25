@@ -16,6 +16,7 @@ function Timeline() {
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 
+
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
 			401: 'Access denied, please try to <a href=\'/\'>login</a> again!',
@@ -39,7 +40,7 @@ function Timeline() {
 
 	return (
 		<PageContainer title='timeline'>
-			<CreatePost/>
+			<CreatePost setPost={setPostsList}/>
 			{ isLoading
 				? <PostLoading />
 				: <Posts postsList={postsList} />
