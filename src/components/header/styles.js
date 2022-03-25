@@ -17,7 +17,7 @@ const Container = styled.header`
 	justify-content: space-between;
 	align-items: center;
 
-	font-weight: bold;
+	font-weight: 700;
 	font-size: 26px;
 	line-height: 31px;
 	color: #FFFFFF;

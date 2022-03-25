@@ -55,7 +55,7 @@ const Button = styled.button`
 	border-radius: 5px;
 	background: #1877F2;
 	
-	font-weight: bold;
+	font-weight: 700;
 	font-family: 'Oswald', sans-serif;
 	font-weight: 700;
 	font-size: 22px;
@@ -75,6 +75,10 @@ const RedirectLink = styled(Link)`
 	text-decoration-line: underline;
 
 	color: #FFFFFF;
+
+	:hover {
+		color: #1877F2;
+	}
 `
 
 export {

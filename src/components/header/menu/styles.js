@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-const Container = styled.header`
+const Container = styled.ul`
 	margin-right: 20px;
 	display: flex;
 	align-items: center;
@@ -19,7 +19,7 @@ const Avatar = styled.div`
 	cursor: pointer;
 	}
 
-	@media (max-width: 650px) {
+	@media (max-width: 700px) {
 		& img {
 			width: 44px;
 			height: 44px;
@@ -43,7 +43,7 @@ const DropDownMenu = styled.div`
 	cursor: pointer;
 
 	li {
-		font-weight: bold;
+		font-weight: 700;
 		font-size: 17px;
 		line-height: 20px;
 		letter-spacing: 0.05em;
@@ -51,9 +51,13 @@ const DropDownMenu = styled.div`
 
 		cursor: pointer;
 		color: #FFFFFF;
+
+		:hover {
+			color: #1877F2;
+		}
 	}
 
-	@media (max-width: 650px) {
+	@media (max-width: 700px) {
 		width: 130px;
 		height: 47px;
 

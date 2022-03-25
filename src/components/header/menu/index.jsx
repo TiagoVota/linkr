@@ -32,8 +32,8 @@ function Menu() {
 	return (
 		<Container ref={ref} onClick={() => setShowDropDown(!showDropDown)}>
 			{showDropDown
-				? <IoIosArrowDown color='white' cursor='pointer'/>
-				: <IoIosArrowUp color='white' cursor='pointer'/>
+				? <IoIosArrowDown color='#FFFFFF' cursor='pointer'/>
+				: <IoIosArrowUp color='#FFFFFF' cursor='pointer'/>
 			}
 
 			<Avatar>
