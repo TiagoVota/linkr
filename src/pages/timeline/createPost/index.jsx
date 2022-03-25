@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Create, Link, Message, Form, Button, Avatar } from '../styles'
+import { Create, Link, Message, Form, Button, Avatar } from './styles'
 import { errorModal, successModal } from '../../../factories/modalFactory'
 import { getTimelinePosts } from '../../../services/api.posts'
 import useAuth from '../../../hooks/useAuth'
