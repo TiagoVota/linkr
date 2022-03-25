@@ -11,7 +11,6 @@ import api from '../../services/api.user'
 import { useParams } from 'react-router-dom'
 import NoPosts from '../../components/posts/noPosts'
 
-
 function UserPage() {
 	const { auth: { token } } = useAuth()
 	const [loading, setLoading] = useState(true)
