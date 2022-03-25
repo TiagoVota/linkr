@@ -5,15 +5,17 @@ import useAuth from '../../hooks/useAuth'
 import { getTimelinePosts } from '../../services/api.posts'
 import { errorModal } from '../../factories/modalFactory'
 
+import CreatePost from './createPost'
+
 import PageContainer from '../../components/pageContainer'
 import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
-
 
 function Timeline() {
 	const { auth: { token } } = useAuth()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
+
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -38,6 +40,7 @@ function Timeline() {
 
 	return (
 		<PageContainer title='timeline'>
+			<CreatePost setPost={setPostsList}/>
 			{ isLoading
 				? <PostLoading />
 				: <Posts postsList={postsList} />
