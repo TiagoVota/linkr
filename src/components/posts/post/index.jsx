@@ -23,7 +23,7 @@ const Post = ({ postInfo }) => {
 	} = postInfo
 	const navigate = useNavigate()
 
-	function goToUserPost() { navigate(`/users/${userId}`) }
+	function goToUserPost() { navigate(`/user/${userId}`) }
 
 	function handleHashtagClick(hashtag) {
 		navigate(`/hashtag/${removeHashtag(hashtag)}`)

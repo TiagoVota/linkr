@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Title = styled.div`
 	height: 160px;
-	padding-bottom: 43px;
+	padding-bottom: 53px;
 
 	display: flex;
 	align-items: end;
@@ -47,9 +47,24 @@ const ContentContainer = styled.div`
 	}
 `
 
+const ProfilePicture = styled.img`
+ width: 50px;
+	height: 50px;
+
+	border-radius: 26px;
+
+	margin: 0 10px;
+`
+
+const Flex = styled.div`
+	display: flex;
+	align-items: center;
+`
 
 export {
 	Container,
+	Flex,
 	Title,
 	ContentContainer,
+	ProfilePicture
 }

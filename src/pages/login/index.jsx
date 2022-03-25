@@ -51,7 +51,7 @@ function Login() {
 		const { isValid, error } = handleValidation(body, authSchema)
 		if (!isValid) return errorModal(error)
 
-		const promise = api.postLogin(body)
+		const promise = api.login(body)
 
 		promise.then((response) => {
 			successModal('Login realizado!')

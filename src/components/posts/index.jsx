@@ -5,7 +5,8 @@ import Post from './post'
 
 
 const Posts = ({ postsList }) => {
-	const havePosts = postsList.length > 0
+	const havePosts = postsList?.[0]?.postId !== null
+
 	return (
 		<>
 			{
@@ -14,7 +15,7 @@ const Posts = ({ postsList }) => {
 						key={postInfo.postId}
 						postInfo={postInfo}
 					/>)
-					: <NoPosts />
+					: <NoPosts message={'There are no posts yet'}/>
 			}
 		</>
 	)

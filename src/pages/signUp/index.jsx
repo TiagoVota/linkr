@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import api from '../../services/api.auth'
+import api from '../../services/api.user'
 
 import signUpSchema from '../../schemas/userSchema'
 
@@ -27,6 +27,12 @@ function SignUp(){
 	function handleSubmit(event) {
 		event.preventDefault()
 		setDisable(true)
+
+		if(formData.password.length < 6){
+			errorModal('Password must be at least 6 characters long')
+			setDisable(false)
+			return
+		}
 		
 		const body = {
 			...formData,
@@ -36,7 +42,7 @@ function SignUp(){
 		const { isValid, error } = handleValidation(body, signUpSchema)
 		if (!isValid) return errorModal(error)
 
-		const promise = api.postSignUp(body)
+		const promise = api.createUser(body)
 
 		promise.then(() => {
 			successModal('Cadastro realizado!')

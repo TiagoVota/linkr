@@ -2,12 +2,12 @@ import { IoSnowOutline } from 'react-icons/io5'
 import { Container } from './styles'
 
 
-function NoPosts() {
+function NoPosts({message}) {
 	return (
 		<Container>
 			<IoSnowOutline size={'150px'}/>
 
-			<p>There are no posts yet</p>
+			<p>{message}</p>
 		</Container>
 	)
 }
