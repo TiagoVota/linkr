@@ -8,7 +8,7 @@ const Posts = ({ postsList }) => {
 	const havePosts = postsList?.[0]?.postId !== null
 
 	return (
-		<>
+		<div>
 			{
 				havePosts
 					? postsList.map((postInfo) => <Post
@@ -17,7 +17,7 @@ const Posts = ({ postsList }) => {
 					/>)
 					: <NoPosts message={'There are no posts yet'}/>
 			}
-		</>
+		</div>
 	)
 }
 

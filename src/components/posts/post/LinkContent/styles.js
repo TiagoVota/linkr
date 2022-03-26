@@ -33,6 +33,8 @@ const InfoWrapper = styled.div`
 	border-color: #4D4D4D;
 	border-radius: 11px 0 0 11px;
 
+	overflow: hidden;
+
 	@media(max-width: 650px) {
 		width: calc(100% - ${imgMobileWidth});
 		padding: 7px 7px 8px 11px;

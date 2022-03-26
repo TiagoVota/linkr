@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { headerHeight } from '../../utils/sharedSizes'
 
-
 const Container = styled.div`
 	width: 100%;
 	height: calc(100% - ${headerHeight});
@@ -56,14 +55,20 @@ const ProfilePicture = styled.img`
 	margin: 0 10px;
 `
 
-const Flex = styled.div`
+const FlexHeader = styled.div`
 	display: flex;
 	align-items: center;
 `
 
+const FlexContent = styled.div`
+	display: flex;
+	gap: 25px;
+`
+
 export {
 	Container,
-	Flex,
+	FlexHeader,
+	FlexContent,
 	Title,
 	ContentContainer,
 	ProfilePicture
