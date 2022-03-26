@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import ReactHashtag from '@mdnm/react-hashtag'
 
 import LinkContent from './LinkContent'
+import DeleteContainer from './Delete'
 
 import {
 	ActionsContainer,
@@ -17,6 +18,7 @@ import { removeHashtag } from '../../../utils/strManipulate'
 const Post = ({ postInfo }) => {
 	const {
 		userId,
+		postId,
 		username,
 		picture,
 		message
@@ -43,6 +45,8 @@ const Post = ({ postInfo }) => {
 				<UsernameText onClick={goToUserPost}>
 					{username}
 				</UsernameText>
+
+				<DeleteContainer postId={postId}/>
 
 				<MessageText>
 					<ReactHashtag onHashtagClick={handleHashtagClick}>
