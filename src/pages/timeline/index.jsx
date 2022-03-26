@@ -33,7 +33,9 @@ function Timeline() {
 		setIsLoading(true)
 
 		getTimelinePosts({ token })
-			.then(({ data }) => setPostsList(data))
+			.then(({ data }) => {
+				return setPostsList(data)
+			})
 			.catch(handleFailGetPosts)
 			.finally(() => setIsLoading(false))
 	}, [token])
