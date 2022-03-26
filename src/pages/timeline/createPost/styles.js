@@ -35,7 +35,7 @@ const Create = styled.div`
 		height: fit-content;
 	}
 
-	@media(min-width: 611px) {
+	@media(min-width: 650px) {
 		justify-content: start;
 
 		width: 611px;
@@ -60,7 +60,7 @@ const Form = styled.form`
 	gap: 5px;
     width: 100%;
 
-	@media(min-width: 611px) {
+	@media(min-width: 650px) {
 		padding-left: 60px;
 	}
 `
@@ -108,7 +108,7 @@ const Message = styled.textarea`
 		color: #949494;
 	}
 
-	@media(min-width: 611px) {
+	@media(min-width: 650px) {
 		height: 66px;
 	}
 `
@@ -134,7 +134,7 @@ const Avatar = styled.div`
 		cursor: pointer;
 	}
 
-	@media(min-width: 611px) {
+	@media(min-width: 650px) {
 		display: flex;
 	}
 `

@@ -42,10 +42,13 @@ function Timeline() {
 
 	return (
 		<PageContainer title='timeline'>
-			<CreatePost setPost={setPostsList}/>
 			{ isLoading
 				? <PostLoading />
-				: <Posts postsList={postsList} />
+				:
+				<div>
+					<CreatePost setPost={setPostsList}/>
+					<Posts postsList={postsList} />
+				</div>
 			}
 		</PageContainer>
 	)
@@ -53,5 +56,3 @@ function Timeline() {
 
 
 export default Timeline
-
-

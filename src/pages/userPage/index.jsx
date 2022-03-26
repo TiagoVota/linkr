@@ -41,19 +41,20 @@ function UserPage() {
 
 		promise.catch(() => {
 			handleFailGetPosts
+			setLoading(false)
 		})
 	}, [token])
 
-	if(postsList.length === 0)
-		return <NoPosts message={'This user doesn\'t exist'}/>
-	
 	return (
 		<>
 			{loading ?
 				<PostLoading />
 				:
-				<PageContainer title={postsList[0].username + '\'s Posts'} picture={postsList[0].picture}>
-					<Posts postsList={postsList} />
+				<PageContainer title={postsList[0]?.username} picture={postsList[0]?.picture}>
+					{postsList.length === 0 ? 
+						<NoPosts message={'This user doesn\'t exist'}/> :
+						<Posts postsList={postsList} />
+					}
 				</PageContainer>
 			}
 		</>
