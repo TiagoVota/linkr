@@ -11,9 +11,14 @@ function sendDeletePostRequest (id, token) {
 	return axios.delete(`${BASE_URL}/posts/${id}`, makeConfig(token))
 }
 
+function updatePost(postId, token, message) {
+	return axios.put(`${BASE_URL}/posts/${postId}`, {message}, makeConfig(token))
+}
+
 const api = {
 	createPost,
-	sendDeletePostRequest
+	sendDeletePostRequest,
+	updatePost
 }
 
 export default api

@@ -113,6 +113,39 @@ const MessageText = styled.h3`
 	}
 `
 
+const ContainerUpdate = styled.div`
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+	left: 440px;
+	bottom: 49px;
+	z-index: 50;
+
+	width: 60px;
+	height: 20px;
+
+	@media (max-width: 650px) {
+		left: 490px;
+	}
+`
+
+const EditText = styled.textarea`
+ width: 100%;
+ background-color:  ${props => props.ativo ? '#EFEFEF' : '#DEDEDE'};
+ color: ${props => props.ativo ? '#000' : '#949494'};
+ resize: none;
+ box-sizing: border-box;
+ border: none;
+ border-radius: 5px;
+ padding: 5px 10px;
+	margin-bottom: 10px;
+ font-size: 15px;
+ font-family: 'Lato', sans-serif;
+ ${props => !props.ativo && 'pointer-events: none;'}
+ ::-webkit-scrollbar {
+     display: none;
+ }
+`
 
 export {
 	Container,
@@ -121,4 +154,6 @@ export {
 	PublicationContainer,
 	UsernameText,
 	MessageText,
+	ContainerUpdate,
+	EditText,
 }
