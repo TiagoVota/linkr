@@ -15,7 +15,7 @@ import { ContainerButton } from './styles'
 
 function LikeAction({ postId, likes }) {
 	const { auth: { authDetails: { id: myUserId }, token } } = useAuth()
-	const [likesList, setLikesList] = useState(likes)
+	const [likesList, setLikesList] = useState(likes || [])
 	const [isLoading, setIsLoading] = useState(false)
 	const isLiked = likesList.some(({ userId }) => userId === myUserId)
 	

@@ -63,7 +63,9 @@ function CreatePost({setPost}) {
 					placeholder='Awesome article about #javascript'
 					disabled={disable}>
 				</Message>
-				<Button type='submit' disabled={disable}>{disable ? 'Publishing' : 'Publish'}</Button>
+				<Button type='submit' disabled={disable}>
+					{disable ? 'Publishing' : 'Publish'}
+				</Button>
 			</Form>
 		</Create>
 	)
