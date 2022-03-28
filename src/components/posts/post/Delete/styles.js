@@ -6,7 +6,7 @@ const ContainerDelete = styled.div`
 	position: relative;
 	left: 470px;
 	bottom: 30px;
-	z-index: 50;
+	z-index: 1;
 
 	width: 60px;
 	height: 20px;

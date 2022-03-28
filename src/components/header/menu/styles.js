@@ -7,7 +7,7 @@ const Container = styled.ul`
 	align-items: center;
 	gap: 10px;
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 `
 
 const Avatar = styled.div`

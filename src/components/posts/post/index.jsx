@@ -1,9 +1,15 @@
-import { useNavigate } from 'react-router-dom'
-import ReactHashtag from '@mdnm/react-hashtag'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TiPencil } from 'react-icons/ti'
+import ReactHashtag from '@mdnm/react-hashtag'
 
 import LinkContent from './LinkContent'
 import DeleteContainer from './Delete'
+
+import useAuth from '../../../hooks/useAuth'
+
+import api from '../../../services/api.post'
+import { removeHashtag } from '../../../utils/strManipulate'
 
 import {
 	ActionsContainer,
@@ -15,10 +21,6 @@ import {
 	PublicationContainer,
 	UsernameText
 } from './styles'
-import { removeHashtag } from '../../../utils/strManipulate'
-import api from '../../../services/api.post'
-import useAuth from '../../../hooks/useAuth'
-import { TiPencil } from 'react-icons/ti'
 
 
 const Post = ({ postInfo }) => {
@@ -51,9 +53,6 @@ const Post = ({ postInfo }) => {
 					setAble(true)
 					window.location.reload()
 				}, 1500)
-			})
-			.catch((error) => {
-				console.log(error)
 			})
 	}
 
