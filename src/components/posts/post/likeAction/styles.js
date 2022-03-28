@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-const Container = styled.div`
+const ContainerButton = styled.button`
 	width: 100%;
 	height: 45px;
 	margin: 19px 0px;
@@ -15,9 +15,14 @@ const Container = styled.div`
 	line-height: 13px;
 
 	color: #FFFFFF;
+	background-color: inherit;
+
+	:hover {
+		filter: none;
+	}
 `
 
 
 export {
-	Container,
+	ContainerButton,
 }

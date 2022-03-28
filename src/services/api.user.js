@@ -14,7 +14,7 @@ function getUserPosts(id, token) {
 
 const api = {
 	createUser,
-	getUserPosts
+	getUserPosts,
 }
 
 export default api

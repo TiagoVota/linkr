@@ -5,12 +5,14 @@ import BASE_URL from './baseUrl'
 import { makeConfig } from '../helpers/configHelper'
 
 
+const HASHTAG_URL = `${BASE_URL}/hashtags`
+
 function insertHashtags(body, config) {
-	return axios.post(`${BASE_URL}/hashtags`, body, config)
+	return axios.post(`${HASHTAG_URL}`, body, config)
 }
 
 function getHashtags(token) {
-	return axios.get(`${BASE_URL}/hashtags`, makeConfig(token))
+	return axios.get(`${HASHTAG_URL}`, makeConfig(token))
 }
 const api = {
 	insertHashtags,

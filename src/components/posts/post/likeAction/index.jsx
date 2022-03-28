@@ -4,43 +4,52 @@ import { IoHeart, IoHeartOutline } from 'react-icons/io5'
 
 import useAuth from '../../../../hooks/useAuth'
 
+import api from '../../../../services/api.like'
 import {
 	makeLikeDataTip,
 	makeLikesCountText
 } from '../../../../helpers/likesHelper'
 
-import { Container } from './styles'
+import { ContainerButton } from './styles'
 
 
-const mockLikes = [
-	{
-		userId: 6,
-		username: 'Fulano 1',
-	},
-	{
-		userId: 2,
-		username: 'Fulano 2',
-	},
-	{
-		userId: 3,
-		username: 'Fulano 3',
-	},
-	{
-		userId: 4,
-		username: 'Fulano 4',
-	},
-	{
-		userId: 1,
-		username: 'Fulano 5',
-	},
-]
-function LikeAction({ postId, likes=mockLikes }) {
-	const { auth: { authDetails: { id: myUserId } } } = useAuth()
+function LikeAction({ postId, likes }) {
+	const { auth: { authDetails: { id: myUserId }, token } } = useAuth()
 	const [likesList, setLikesList] = useState(likes)
+	const [isLoading, setIsLoading] = useState(false)
 	const isLiked = likesList.some(({ userId }) => userId === myUserId)
+	
+	function handleLikeClick() {
+		const action = (isLiked) ? 'dislike' : 'like'
+		const apiFunction = {
+			'like': api.insertLike,
+			'dislike': api.deleteLike,
+		}
+
+		setIsLoading(true)
+		updateMyLikeList(action)
+
+		apiFunction[action]({ token, postId })
+			.catch(() => setLikesList(likesList))
+			.finally(() => setIsLoading(false))
+	}
+
+	function updateMyLikeList(action) {
+		const myLike = { userId: myUserId, username: 'You' }
+		const updatedList = {
+			'like': [ myLike, ...likesList ],
+			'dislike': likesList.filter(({ userId }) => userId !== myUserId),
+		}
+
+		setLikesList(updatedList[action])
+	}
 
 	return (
-		<Container data-tip={makeLikeDataTip(likesList, myUserId)} >
+		<ContainerButton
+			onClick={handleLikeClick}
+			isDisable={isLoading}
+			data-tip={makeLikeDataTip(likesList, myUserId)}
+		>
 			{ Boolean(isLiked)
 				? <IoHeart
 					color='#AC0000'
@@ -63,7 +72,7 @@ function LikeAction({ postId, likes=mockLikes }) {
 			<p>
 				{makeLikesCountText(likesList)}
 			</p>
-		</Container>
+		</ContainerButton>
 	)
 }
 

@@ -39,7 +39,7 @@ const Post = ({ postInfo }) => {
 	const [newMessage, setNewMessage] = useState('')
 	const [disabled, setDisabled] = useState(false)
 	const [able, setAble] = useState(true)
-	const { auth: { token } } = useAuth()
+	const { auth: { authDetails: { id: myUserId },  token } } = useAuth()
 
 	function goToUserPost() { navigate(`/user/${userId}`) }
 
@@ -86,7 +86,7 @@ const Post = ({ postInfo }) => {
 					onClick={goToUserPost}
 				/>
 				
-				<LikeAction likes={likes} />
+				<LikeAction likes={likes} postId={postId} />
 			</ActionsContainer>
 
 			<PublicationContainer>
@@ -94,22 +94,28 @@ const Post = ({ postInfo }) => {
 					{username}
 				</UsernameText>
 
-				<DeleteContainer postId={postId}/>
-				<ContainerUpdate>
-					<TiPencil 
-						onClick={() => openEditPost()}
-						color={'#FFFFFF'}
-						height='20px'
-						width='20px'
-						style={{cursor: 'pointer'}}
-					/>
-				</ContainerUpdate>
+				{	Boolean(myUserId !== userId)
+					? <></>
+					:	<>
+						<DeleteContainer postId={postId}/>
+
+						<ContainerUpdate>
+							<TiPencil 
+								onClick={() => openEditPost()}
+								color={'#FFFFFF'}
+								height='20px'
+								width='20px'
+								style={{cursor: 'pointer'}}
+							/>
+						</ContainerUpdate>
+					</>
+				}
 
 				{inputIsOpen ? (
 					<EditText
 						autoFocus
 						onFocus={(e) => e.currentTarget.select()}
-						ativo={able}
+						active={able}
 						disabled={disabled}
 						value={newMessage}
 						onChange={(e) => setNewMessage(e.target.value)}
@@ -121,7 +127,6 @@ const Post = ({ postInfo }) => {
 						</ReactHashtag>
 					</MessageText>
 				)}
-				
 
 				<LinkContent postInfo={postInfo}/>
 			</PublicationContainer>
