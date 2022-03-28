@@ -37,7 +37,7 @@ function Menu() {
 			}
 
 			<Avatar>
-				<img src={picture}/>
+				<img src={picture} alt='Profile picture' />
 			</Avatar>
 
 			{showDropDown

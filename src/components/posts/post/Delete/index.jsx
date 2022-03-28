@@ -17,7 +17,6 @@ function DeleteContainer ({postId}) {
 		confirmModal('Are you sure you want to delete this post?',
 			'Yes, delete it', 'No, go back')
 			.then((result) => {
-				console.log(result)
 				if(result.isConfirmed){
 					setIsLoading(true)
 					api.sendDeletePostRequest(postId, token)

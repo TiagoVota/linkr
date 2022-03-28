@@ -119,7 +119,7 @@ const ContainerUpdate = styled.div`
 	position: relative;
 	left: 440px;
 	bottom: 49px;
-	z-index: 50;
+	z-index: 1;
 
 	width: 60px;
 	height: 20px;
