@@ -29,7 +29,7 @@ function HashtagsList(){
 			<List>
 				{hashtags.map(tag => (
 					<Hashtag onClick={() => navigate(`/hashtag/${removeHashtag(tag.name)}`)} key={tag.id}>
-						{tag.name}
+						{`# ${tag.name}`}
 					</Hashtag>
 				))}
 			</List>

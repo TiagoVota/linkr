@@ -12,9 +12,15 @@ function insertHashtags(body, config) {
 function getHashtags(token) {
 	return axios.get(`${BASE_URL}/hashtags`, makeConfig(token))
 }
+
+function getHashtag(hashtagId, token) {
+	return axios.get(`${BASE_URL}/hashtag/${hashtagId}`, makeConfig(token))
+}
+
 const api = {
 	insertHashtags,
-	getHashtags
+	getHashtags,
+	getHashtag
 }
 
 export default api

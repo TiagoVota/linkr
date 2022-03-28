@@ -44,7 +44,7 @@ function UserPage() {
 			handleFailGetPosts
 			setLoading(false)
 		})
-	}, [token])
+	}, [userId])
 
 	return (
 		<>
