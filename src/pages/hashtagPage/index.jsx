@@ -39,7 +39,7 @@ function HashtagPage() {
 			})
 			.catch(handleFailGetHashtag)
 			.finally(() => setLoading(false))
-	}, [token])
+	}, [hashtag])
 
 	return (
 		<>
