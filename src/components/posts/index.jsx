@@ -1,11 +1,9 @@
-import styled from 'styled-components'
-
 import NoPosts from './noPosts'
 import Post from './post'
 
 
-const Posts = ({ postsList }) => {
-	const havePosts = postsList?.[0]?.postId !== null
+function Posts({ postsList }) {
+	const havePosts = !!(postsList?.[0]?.postId)
 
 	return (
 		<div>
@@ -23,8 +21,3 @@ const Posts = ({ postsList }) => {
 
 
 export default Posts
-
-
-const Container = styled.div`
-	
-`

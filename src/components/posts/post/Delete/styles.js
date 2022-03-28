@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 
-const ContainerDelete = styled.div`
-	display: flex;
-	justify-content: space-around;
-	position: relative;
-	left: 470px;
-	bottom: 30px;
+const ContainerDelete = styled.button`
+	width: 30px;
+	height: 25px;
+
+	position: absolute;
+	right: 15px;
+	top: 15px;
 	z-index: 1;
 
-	width: 60px;
-	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	@media (max-width: 650px) {
-		left: 520px;
-	}
+	background-color: inherit;
 `
 
 export {

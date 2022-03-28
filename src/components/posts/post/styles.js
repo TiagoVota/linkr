@@ -12,6 +12,8 @@ const Container = styled.div`
 	min-height: 200px;
 	margin-bottom: 29px;
 
+	position: relative;
+
 	display: flex;
 	justify-content: start;
 
@@ -113,38 +115,38 @@ const MessageText = styled.h3`
 	}
 `
 
-const ContainerUpdate = styled.div`
-	display: flex;
-	justify-content: space-around;
-	position: relative;
-	left: 440px;
-	bottom: 49px;
+const ContainerUpdate = styled.button`
+	width: 30px;
+	height: 25px;
+
+	position: absolute;
+	right: 50px;
+	top: 15px;
 	z-index: 1;
 
-	width: 60px;
-	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	@media (max-width: 650px) {
-		left: 490px;
-	}
+	background-color: inherit;
 `
 
 const EditText = styled.textarea`
- width: 100%;
- background-color:  ${props => props.ativo ? '#EFEFEF' : '#DEDEDE'};
- color: ${props => props.ativo ? '#000' : '#949494'};
- resize: none;
- box-sizing: border-box;
- border: none;
- border-radius: 5px;
- padding: 5px 10px;
+	width: 100%;
+	background-color:  ${props => props.active ? '#EFEFEF' : '#DEDEDE'};
+	color: ${props => props.active ? '#000' : '#949494'};
+	resize: none;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
 	margin-bottom: 10px;
- font-size: 15px;
- font-family: 'Lato', sans-serif;
- ${props => !props.ativo && 'pointer-events: none;'}
- ::-webkit-scrollbar {
-     display: none;
- }
+	font-size: 15px;
+	font-family: 'Lato', sans-serif;
+	${props => !props.active && 'pointer-events: none;'}
+	::-webkit-scrollbar {
+			display: none;
+	}
 `
 
 export {

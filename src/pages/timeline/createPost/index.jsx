@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Create, Link, Message, Form, Button, Avatar } from './styles'
 import { errorModal, successModal } from '../../../factories/modalFactory'
-import { getTimelinePosts } from '../../../services/api.posts'
 import useAuth from '../../../hooks/useAuth'
 import api from '../../../services/api.post'
 
@@ -34,7 +33,7 @@ function CreatePost({setPost}) {
 			setMessage('')
 			setLink('')
 			setDisable(false)
-			getTimelinePosts({ token })
+			api.getTimelinePosts({ token })
 				.then(({ data }) => setPost(data))
 		})
 
@@ -64,7 +63,9 @@ function CreatePost({setPost}) {
 					placeholder='Awesome article about #javascript'
 					disabled={disable}>
 				</Message>
-				<Button type='submit' disabled={disable}>{disable ? 'Publishing' : 'Publish'}</Button>
+				<Button type='submit' disabled={disable}>
+					{disable ? 'Publishing' : 'Publish'}
+				</Button>
 			</Form>
 		</Create>
 	)

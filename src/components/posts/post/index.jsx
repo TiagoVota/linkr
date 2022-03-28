@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { TiPencil } from 'react-icons/ti'
 import ReactHashtag from '@mdnm/react-hashtag'
 
-import LinkContent from './LinkContent'
-import DeleteContainer from './Delete'
-
 import useAuth from '../../../hooks/useAuth'
 
-import api from '../../../services/api.post'
 import { removeHashtag } from '../../../utils/strManipulate'
+
+import api from '../../../services/api.post'
+
+import LinkContent from './LinkContent'
+import DeleteContainer from './Delete'
+import LikeAction from './likeAction'
 
 import {
 	ActionsContainer,
@@ -29,14 +31,15 @@ const Post = ({ postInfo }) => {
 		postId,
 		username,
 		picture,
-		message
+		message,
+		likes,
 	} = postInfo
 	const navigate = useNavigate()
 	const [inputIsOpen, setInputIsOpen] = useState(false)
 	const [newMessage, setNewMessage] = useState('')
 	const [disabled, setDisabled] = useState(false)
 	const [able, setAble] = useState(true)
-	const { auth: { token } } = useAuth()
+	const { auth: { authDetails: { id: myUserId },  token } } = useAuth()
 
 	function goToUserPost() { navigate(`/user/${userId}`) }
 
@@ -82,6 +85,8 @@ const Post = ({ postInfo }) => {
 					alt={`${username}'s profile picture`}
 					onClick={goToUserPost}
 				/>
+				
+				<LikeAction likes={likes} postId={postId} />
 			</ActionsContainer>
 
 			<PublicationContainer>
@@ -89,22 +94,28 @@ const Post = ({ postInfo }) => {
 					{username}
 				</UsernameText>
 
-				<DeleteContainer postId={postId}/>
-				<ContainerUpdate>
-					<TiPencil 
-						onClick={() => openEditPost()}
-						color={'#FFFFFF'}
-						height='20px'
-						width='20px'
-						style={{cursor: 'pointer'}}
-					/>
-				</ContainerUpdate>
+				{	Boolean(myUserId !== userId)
+					? <></>
+					:	<>
+						<DeleteContainer postId={postId}/>
+
+						<ContainerUpdate>
+							<TiPencil 
+								onClick={() => openEditPost()}
+								color={'#FFFFFF'}
+								height='20px'
+								width='20px'
+								style={{cursor: 'pointer'}}
+							/>
+						</ContainerUpdate>
+					</>
+				}
 
 				{inputIsOpen ? (
 					<EditText
 						autoFocus
 						onFocus={(e) => e.currentTarget.select()}
-						ativo={able}
+						active={able}
 						disabled={disabled}
 						value={newMessage}
 						onChange={(e) => setNewMessage(e.target.value)}
@@ -116,7 +127,6 @@ const Post = ({ postInfo }) => {
 						</ReactHashtag>
 					</MessageText>
 				)}
-				
 
 				<LinkContent postInfo={postInfo}/>
 			</PublicationContainer>

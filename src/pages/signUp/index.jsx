@@ -27,12 +27,6 @@ function SignUp(){
 	function handleSubmit(event) {
 		event.preventDefault()
 		setDisable(true)
-
-		if(formData.password.length < 6){
-			errorModal('Password must be at least 6 characters long')
-			setDisable(false)
-			return
-		}
 		
 		const body = {
 			...formData,
