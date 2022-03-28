@@ -3,6 +3,8 @@ import ReactHashtag from '@mdnm/react-hashtag'
 
 import LinkContent from './LinkContent'
 
+import { removeHashtag } from '../../../utils/strManipulate'
+
 import {
 	ActionsContainer,
 	Container,
@@ -11,7 +13,6 @@ import {
 	PublicationContainer,
 	UsernameText
 } from './styles'
-import { removeHashtag } from '../../../utils/strManipulate'
 
 
 const Post = ({ postInfo }) => {

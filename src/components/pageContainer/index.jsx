@@ -1,4 +1,5 @@
 import Header from '../header'
+import SearchBar from './searchBar'
 
 import { Container, ContentContainer, Title } from './styles'
 
@@ -9,6 +10,8 @@ function PageContainer({ children: pageContent, title }) {
 			<Header />
 
 			<Container>
+				<SearchBar />
+
 				<ContentContainer>
 					<Title>{title}</Title>
 					{/*
