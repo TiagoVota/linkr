@@ -1,10 +1,12 @@
+import HashtagsList from '../hashtagsList'
 import Header from '../header'
 import SearchBar from './searchBar'
 
-import { Container, ContentContainer, Title } from './styles'
+import { Container, ContentContainer, FlexHeader, FlexContent, ProfilePicture, Title } from './styles'
 
 
-function PageContainer({ children: pageContent, title }) {
+function PageContainer({ children: pageContent, title, picture }) {
+
 	return (
 		<>
 			<Header />
@@ -13,7 +15,10 @@ function PageContainer({ children: pageContent, title }) {
 				<SearchBar />
 
 				<ContentContainer>
-					<Title>{title}</Title>
+					<FlexHeader>
+						{picture && <ProfilePicture src={picture} />}
+						<Title>{title}</Title>
+					</FlexHeader>
 					{/*
 						TODO: REMOVER DEPOIS
 						Galera, explicação de como usar esse page Container:
@@ -27,8 +32,10 @@ function PageContainer({ children: pageContent, title }) {
 						aparecer, colocar o menu de post creation). Qualquer coisa só fala
 						comigo [Tiago].
 					*/}
-
-					{pageContent}
+					<FlexContent>
+						{pageContent}
+						{title !== undefined && <HashtagsList/>}
+					</FlexContent>
 				</ContentContainer>
 			</Container>
 		</>
