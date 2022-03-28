@@ -6,7 +6,7 @@ const FormContainer = styled.form`
 	width: 100%;
 	height: 45px;
 
-	z-index: 1;
+	z-index: 2;
 
 	display: flex;
 

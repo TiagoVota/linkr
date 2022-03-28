@@ -14,7 +14,7 @@ function SuggestionBox({ userInfo }) {
 	const navigate = useNavigate()
 
 	function handleClick() {
-		navigate(`/users/${id}`)
+		navigate(`/user/${id}`)
 	}
 	return (
 		<Container onClick={handleClick}>

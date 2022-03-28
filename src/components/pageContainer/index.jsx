@@ -2,7 +2,14 @@ import HashtagsList from '../hashtagsList'
 import Header from '../header'
 import SearchBar from './searchBar'
 
-import { Container, ContentContainer, FlexHeader, FlexContent, ProfilePicture, Title } from './styles'
+import {
+	Container,
+	ContentContainer,
+	FlexHeader,
+	FlexContent,
+	ProfilePicture,
+	Title
+} from './styles'
 
 
 function PageContainer({ children: pageContent, title, picture }) {

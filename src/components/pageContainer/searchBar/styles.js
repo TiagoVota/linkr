@@ -8,7 +8,7 @@ const Container = styled.div`
 	margin-top: calc(14px - ${headerHeight});
 
 	position: fixed;
-	z-index: 2;
+	z-index: 3;
 
 	display: flex;
 	flex-direction: column;
