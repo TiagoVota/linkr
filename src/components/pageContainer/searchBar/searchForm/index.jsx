@@ -4,38 +4,11 @@ import { IoSearch } from 'react-icons/io5'
 
 import useAuth from '../../../../hooks/useAuth'
 
-import { getUsers } from '../../../../services/api.users'
+import * as api from '../../../../services/api.users'
 
 import { FormContainer, StyledDebounceInput, SearchButton } from './styles'
 
 
-// const mockUserList = [
-// 	{
-// 		id: 1,
-// 		username: 'Fulano 1',
-// 		picture: 'https://i.pinimg.com/236x/2b/28/fe/2b28fe8c5638981cb73ee9b1b36706c1--train-your-dragon-food-networktrisha.jpg',
-// 	},
-// 	{
-// 		id: 2,
-// 		username: 'Fulano 2',
-// 		picture: 'https://i.pinimg.com/236x/2b/28/fe/2b28fe8c5638981cb73ee9b1b36706c1--train-your-dragon-food-networktrisha.jpg',
-// 	},
-// 	{
-// 		id: 3,
-// 		username: 'Fulano 3',
-// 		picture: 'https://i.pinimg.com/236x/2b/28/fe/2b28fe8c5638981cb73ee9b1b36706c1--train-your-dragon-food-networktrisha.jpg',
-// 	},
-// 	{
-// 		id: 4,
-// 		username: 'Fulano 4',
-// 		picture: 'https://i.pinimg.com/236x/2b/28/fe/2b28fe8c5638981cb73ee9b1b36706c1--train-your-dragon-food-networktrisha.jpg',
-// 	},
-// 	{
-// 		id: 5,
-// 		username: 'Fulano 5',
-// 		picture: 'https://i.pinimg.com/236x/2b/28/fe/2b28fe8c5638981cb73ee9b1b36706c1--train-your-dragon-food-networktrisha.jpg',
-// 	},
-// ]  // TODO: REMOVER
 function SearchForm({ suggestions, setSuggestions, setIsSearching }) {
 	const { auth: { token } } = useAuth()
 	const [search, setSearch] = useState('')
@@ -48,9 +21,8 @@ function SearchForm({ suggestions, setSuggestions, setIsSearching }) {
 
 	useEffect(() => {
 		if (search.length < 3 || search.includes('#')) return setSuggestions([])
-		getUsers({ token, userName: search })
+		api.getUsers({ token, userName: search })
 			.then(({ data }) => setSuggestions(data))
-			// .finally(_ => setSuggestions(mockUserList))  // TODO: REMOVER
 	}, [search])
 
 	function searchHashtag() {

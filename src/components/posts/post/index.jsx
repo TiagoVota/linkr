@@ -54,9 +54,6 @@ const Post = ({ postInfo }) => {
 					window.location.reload()
 				}, 1500)
 			})
-			.catch((error) => {
-				console.log(error)
-			})
 	}
 
 	function handleKey(e) {

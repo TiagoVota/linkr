@@ -16,6 +16,7 @@ function UserPage() {
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const {userId} = useParams()
+	const title = `${postsList[0]?.username}'s posts`
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -50,7 +51,7 @@ function UserPage() {
 			{loading ?
 				<PostLoading />
 				:
-				<PageContainer title={postsList[0]?.username} picture={postsList[0]?.picture}>
+				<PageContainer title={title} picture={postsList[0]?.picture}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This user doesn\'t exist'}/> :
 						<Posts postsList={postsList} />
