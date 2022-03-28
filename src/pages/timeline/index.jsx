@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import useAuth from '../../hooks/useAuth'
 
-import { getTimelinePosts } from '../../services/api.posts'
+import api from '../../services/api.post'
 import { errorModal } from '../../factories/modalFactory'
 
 import CreatePost from './createPost'
@@ -32,7 +32,7 @@ function Timeline() {
 	useEffect(() => {
 		setIsLoading(true)
 
-		getTimelinePosts({ token })
+		api.getTimelinePosts({ token })
 			.then(({ data }) => {
 				return setPostsList(data)
 			})

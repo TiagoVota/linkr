@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { TiPencil } from 'react-icons/ti'
 import ReactHashtag from '@mdnm/react-hashtag'
 
-import LinkContent from './LinkContent'
-import DeleteContainer from './Delete'
-
 import useAuth from '../../../hooks/useAuth'
 
-import api from '../../../services/api.post'
 import { removeHashtag } from '../../../utils/strManipulate'
+
+import api from '../../../services/api.post'
+
+import LinkContent from './LinkContent'
+import DeleteContainer from './Delete'
+import LikeAction from './likeAction'
 
 import {
 	ActionsContainer,
@@ -29,7 +31,8 @@ const Post = ({ postInfo }) => {
 		postId,
 		username,
 		picture,
-		message
+		message,
+		likes,
 	} = postInfo
 	const navigate = useNavigate()
 	const [inputIsOpen, setInputIsOpen] = useState(false)
@@ -82,6 +85,8 @@ const Post = ({ postInfo }) => {
 					alt={`${username}'s profile picture`}
 					onClick={goToUserPost}
 				/>
+				
+				<LikeAction likes={likes} />
 			</ActionsContainer>
 
 			<PublicationContainer>
