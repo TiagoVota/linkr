@@ -2,9 +2,9 @@ import { IoSnowOutline } from 'react-icons/io5'
 import { Container } from './styles'
 
 
-function NoPosts({message}) {
+function NoPosts({message, userPage}) {
 	return (
-		<Container>
+		<Container userPage={userPage}>
 			<IoSnowOutline size={'150px'}/>
 
 			<p>{message}</p>

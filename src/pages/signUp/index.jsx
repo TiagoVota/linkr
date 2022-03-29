@@ -34,7 +34,10 @@ function SignUp(){
 		}
     
 		const { isValid, error } = handleValidation(body, signUpSchema)
-		if (!isValid) return errorModal(error)
+		if (!isValid){
+			setDisable(false)
+			return errorModal(error)
+		}
 
 		const promise = api.createUser(body)
 

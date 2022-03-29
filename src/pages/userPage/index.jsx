@@ -54,7 +54,7 @@ function UserPage() {
 				<PageContainer title={title} picture={postsList[0]?.picture}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This user doesn\'t exist'}/> :
-						<Posts postsList={postsList} />
+						<Posts postsList={postsList} userPage={true}/>
 					}
 				</PageContainer>
 			}

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 	margin-top: 30px;
-	width: 100%;
+	width: ${props => props.userPage ? '100vh' : '100%'};
 
 	display: flex;
 	flex-direction: column;
@@ -18,6 +18,10 @@ const Container = styled.div`
 
 	svg {
 		margin-bottom: 30px;
+	}
+
+	@media(max-width: 650px) {
+		width: 100vw;
 	}
 `
 
