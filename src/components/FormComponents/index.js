@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 const Container = styled.div`
 	width: 100vw;
 	height: 100vh;
-
-	display: flex;
-
+	
 	background-color: #333333;
+	
+	display: flex;
+ 
+	@media(max-width: 650px){
+		flex-direction: column;
+	}
+
 `
 const FormContainer = styled.div`
 	width: 40%;
@@ -20,7 +25,7 @@ const FormContainer = styled.div`
 
 	@media(max-width: 650px) {
 		width: 100%;
-		margin-top: 175px;
+		margin-top: 50px;
 	}
 `
 

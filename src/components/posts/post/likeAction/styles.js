@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const ContainerButton = styled.button`
 	width: 100%;
 	height: 45px;
-	margin: 19px 0px;
+	margin-top: 19px;
 
 	display: flex;
 	flex-direction: column;
