@@ -7,8 +7,7 @@ import api from '../../services/api.auth'
 
 import signUpSchema from '../../schemas/userSchema'
 
-import Logo from '../../components/logo/index'
-import LogoMobile from '../../components/logoMobile/index'
+import Logo from '../../components/logo'
 import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/formComponents'
 
 
@@ -61,7 +60,6 @@ function SignUp(){
 	return (
 		<Container>
 			<Logo />
-			<LogoMobile/>
 
 			<FormContainer>
 				<Form onSubmit={handleSubmit}>

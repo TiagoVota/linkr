@@ -21,8 +21,11 @@ import {
 	MessageText,
 	ProfileImg,
 	PublicationContainer,
-	UsernameText
+	UsernameText,
+	PostContainer
 } from './styles'
+import CommentAction from './Comments/Button'
+import CommentSection from './Comments/CommentSection'
 
 
 const Post = ({ postInfo }) => {
@@ -39,6 +42,8 @@ const Post = ({ postInfo }) => {
 	const [newMessage, setNewMessage] = useState('')
 	const [disabled, setDisabled] = useState(false)
 	const [able, setAble] = useState(true)
+	const [showComments, setShowComments] = useState(false)
+
 	const { auth: { authDetails: { id: myUserId },  token } } = useAuth()
 
 	function goToUserPost() { navigate(`/user/${userId}`) }
@@ -78,59 +83,64 @@ const Post = ({ postInfo }) => {
 	}
 
 	return (
-		<Container>
-			<ActionsContainer>
-				<ProfileImg
-					src={picture}
-					alt={`${username}'s profile picture`}
-					onClick={goToUserPost}
-				/>
-				
-				<LikeAction likes={likes} postId={postId} />
-			</ActionsContainer>
+		<PostContainer>
+			<Container>
+				<ActionsContainer>
+					<ProfileImg
+						src={picture}
+						alt={`${username}'s profile picture`}
+						onClick={goToUserPost}
+					/>
 
-			<PublicationContainer>
-				<UsernameText onClick={goToUserPost}>
-					{username}
-				</UsernameText>
+					<LikeAction likes={likes} postId={postId} />
+					<CommentAction showComments={showComments} setShowComments={setShowComments}/>
+				</ActionsContainer>
 
-				{	Boolean(myUserId !== userId)
-					? <></>
-					:	<>
-						<DeleteContainer postId={postId}/>
+				<PublicationContainer>
+					<UsernameText onClick={goToUserPost}>
+						{username}
+					</UsernameText>
 
-						<ContainerUpdate>
-							<TiPencil 
-								onClick={() => openEditPost()}
-								color={'#FFFFFF'}
-								height='20px'
-								width='20px'
-								style={{cursor: 'pointer'}}
-							/>
-						</ContainerUpdate>
-					</>
-				}
+					{	Boolean(myUserId !== userId)
+						? <></>
+						:	<>
+							<DeleteContainer postId={postId}/>
 
-				{inputIsOpen ? (
-					<EditText
-						autoFocus
-						onFocus={(e) => e.currentTarget.select()}
-						active={able}
-						disabled={disabled}
-						value={newMessage}
-						onChange={(e) => setNewMessage(e.target.value)}
-						onKeyDown={(e) => handleKey(e)}
-					/>) : (
-					<MessageText>
-						<ReactHashtag onHashtagClick={handleHashtagClick}>
-							{message}
-						</ReactHashtag>
-					</MessageText>
-				)}
+							<ContainerUpdate>
+								<TiPencil 
+									onClick={() => openEditPost()}
+									color={'#FFFFFF'}
+									height='20px'
+									width='20px'
+									style={{cursor: 'pointer'}}
+								/>
+							</ContainerUpdate>
+						</>
+					}
 
-				<LinkContent postInfo={postInfo}/>
-			</PublicationContainer>
-		</Container>
+					{inputIsOpen ? (
+						<EditText
+							autoFocus
+							onFocus={(e) => e.currentTarget.select()}
+							active={able}
+							disabled={disabled}
+							value={newMessage}
+							onChange={(e) => setNewMessage(e.target.value)}
+							onKeyDown={(e) => handleKey(e)}
+						/>) : (
+						<MessageText>
+							<ReactHashtag onHashtagClick={handleHashtagClick}>
+								{message}
+							</ReactHashtag>
+						</MessageText>
+					)}
+
+					<LinkContent postInfo={postInfo}/>
+				</PublicationContainer>
+
+			</Container>
+			<CommentSection showComments={showComments}>oi</CommentSection>
+		</PostContainer>
 	)
 }
 

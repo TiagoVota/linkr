@@ -10,7 +10,6 @@ import { errorModal, successModal } from '../../factories/modalFactory'
 import authSchema from '../../schemas/authSchema'
 
 import Logo from '../../components/logo'
-import LogoMobile from '../../components/logoMobile'
 
 import {
 	Button,
@@ -68,7 +67,6 @@ function Login() {
 	return (
 		<Container>
 			<Logo />
-			<LogoMobile/>
 
 			<FormContainer>
 				<Form onSubmit={handleSubmit}>

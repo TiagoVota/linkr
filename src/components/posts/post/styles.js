@@ -7,10 +7,16 @@ const profileMobileSize = '40px'
 const actionsWidth = `(${profileSize} + (2 * 18px))`
 const actionsMobileWidth = `(${profileMobileSize} + (2 * 15px))`
 
+const PostContainer = styled.div`
+	background-color: #1E1E1E;
+
+	border-radius: 16px;
+	margin-bottom: 44px;
+`
+
 const Container = styled.div`
 	width: ${postWidth};
 	min-height: 200px;
-	margin-bottom: 29px;
 
 	position: relative;
 
@@ -158,4 +164,5 @@ export {
 	MessageText,
 	ContainerUpdate,
 	EditText,
+	PostContainer
 }
