@@ -54,7 +54,7 @@ function Login() {
 		const promise = api.login(body)
 
 		promise.then((response) => {
-			successModal('Login realizado!')
+			successModal('Login performed!')
 			login(response.data)
 			navigate('/timeline')
 		})

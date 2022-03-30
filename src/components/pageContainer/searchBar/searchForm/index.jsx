@@ -4,7 +4,7 @@ import { IoSearch } from 'react-icons/io5'
 
 import useAuth from '../../../../hooks/useAuth'
 
-import * as api from '../../../../services/api.users'
+import api from '../../../../services/api.user'
 
 import { FormContainer, StyledDebounceInput, SearchButton } from './styles'
 

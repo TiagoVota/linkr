@@ -11,8 +11,8 @@ const getTimelinePosts = ({ token }) => {
 	return axios.get(`${POST_URL}/timeline`, makeConfig(token))
 }
 
-function createPost(body, config) {
-	return axios.post(`${POST_URL}`, body, config)
+function createPost(body, token) {
+	return axios.post(`${POST_URL}`, body, makeConfig(token))
 }
 
 function sendDeletePostRequest (id, token) {

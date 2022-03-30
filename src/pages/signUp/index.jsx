@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import api from '../../services/api.user'
+import api from '../../services/api.auth'
 
 import signUpSchema from '../../schemas/userSchema'
 
@@ -42,7 +42,7 @@ function SignUp(){
 		const promise = api.createUser(body)
 
 		promise.then(() => {
-			successModal('Cadastro realizado!')
+			successModal('Sign up performed!')
 			clearForm()
 
 			navigate('/')

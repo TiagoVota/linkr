@@ -34,9 +34,7 @@ function HashtagPage() {
 		setLoading(true)
 
 		api.getHashtag(hashtag, token)
-			.then(({ data }) => {
-				return setPostsList(data)
-			})
+			.then(({ data }) => setPostsList(data))
 			.catch(handleFailGetHashtag)
 			.finally(() => setLoading(false))
 	}, [hashtag])

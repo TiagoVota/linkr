@@ -20,16 +20,10 @@ function CreatePost({setPost}) {
 			message: message,
 		}
 
-		const config =  {
-			headers: {
-				'Authorization': `Bearer ${token}`
-			}
-		}
-
-		const promise = api.createPost(body, config)
+		const promise = api.createPost(body, token)
 
 		promise.then((response) => {
-			successModal('Post publicado!')
+			successModal('Post published!')
 			setMessage('')
 			setLink('')
 			setDisable(false)
@@ -38,7 +32,7 @@ function CreatePost({setPost}) {
 		})
 
 		promise.catch((error) => {
-			errorModal('Houve um erro ao publicar seu link')
+			errorModal('There was an error publishing your link!')
 			setDisable(false)
 		})
 	}
