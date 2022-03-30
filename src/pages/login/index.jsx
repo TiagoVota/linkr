@@ -9,8 +9,8 @@ import { errorModal, successModal } from '../../factories/modalFactory'
 
 import authSchema from '../../schemas/authSchema'
 
-import Logo from '../../components/Logo'
-import LogoMobile from '../../components/LogoMobile'
+import Logo from '../../components/logo'
+import LogoMobile from '../../components/logoMobile'
 
 import {
 	Button,
@@ -19,7 +19,7 @@ import {
 	FormContainer,
 	Input,
 	RedirectLink
-} from '../../components/FormComponents'
+} from '../../components/formComponents'
 
 
 function Login() {

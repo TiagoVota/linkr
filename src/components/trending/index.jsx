@@ -6,7 +6,7 @@ import api from '../../services/api.hashtags'
 import useAuth from '../../hooks/useAuth'
 
 
-function HashtagsList(){
+function Trending(){
 	const navigate = useNavigate()
 	const { auth: { token } } = useAuth()
 	const [hashtags, setHashtags] = useState([])
@@ -37,4 +37,4 @@ function HashtagsList(){
 	)
 }
 
-export default HashtagsList
+export default Trending
