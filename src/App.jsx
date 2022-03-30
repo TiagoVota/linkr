@@ -1,4 +1,5 @@
 import { AuthProvider } from './contexts/AuthContext'
+import { ReloadPostsProvider } from './contexts/ReloadPostsContext'
 
 import ResetStyleCSS from './styles/ResetStyleCSS'
 import GlobalStyle from './styles/GlobalStyle'
@@ -6,13 +7,15 @@ import GlobalStyle from './styles/GlobalStyle'
 import PagesRoutes from './Routes'
 
 
-const App = () => {
+function App() {
 	return (
 		<AuthProvider>
-			<ResetStyleCSS />
-			<GlobalStyle />
+			<ReloadPostsProvider>
+				<ResetStyleCSS />
+				<GlobalStyle />
 		
-			<PagesRoutes />
+				<PagesRoutes />
+			</ReloadPostsProvider>
 		</AuthProvider>
 	)
 }

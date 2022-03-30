@@ -1,14 +1,20 @@
 import { useState } from 'react'
-import { Create, Link, Message, Form, Button, Avatar } from './styles'
-import { errorModal, successModal } from '../../../factories/modalFactory'
+
 import useAuth from '../../../hooks/useAuth'
+import useReloadPosts from '../../../hooks/useReloadPosts'
+
 import api from '../../../services/api.post'
+import { errorModal, successModal } from '../../../factories/modalFactory'
+
+import { Create, Link, Message, Form, Button, Avatar } from './styles'
+
 
 function CreatePost({setPost}) {
 	const [link, setLink] = useState('')
 	const [message, setMessage] = useState('')
 	const [disable, setDisable] = useState(false)
 	const { auth: { token } } = useAuth()
+	const { warnReloadPosts } = useReloadPosts()
 	const {auth} = useAuth()
 
 	function handleSubmit(event) {
@@ -28,7 +34,10 @@ function CreatePost({setPost}) {
 			setLink('')
 			setDisable(false)
 			api.getTimelinePosts({ token })
-				.then(({ data }) => setPost(data))
+				.then(({ data }) => {
+					setPost(data)
+					warnReloadPosts()
+				})
 		})
 
 		promise.catch((error) => {

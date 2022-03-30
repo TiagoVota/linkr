@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import useAuth from '../../hooks/useAuth'
+import useReloadPosts from '../../hooks/useReloadPosts'
 
 import api from '../../services/api.post'
 import { errorModal } from '../../factories/modalFactory'
@@ -13,6 +14,7 @@ import PostLoading from '../../components/postLoading'
 
 function Timeline() {
 	const { auth: { token } } = useAuth()
+	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 
@@ -38,7 +40,7 @@ function Timeline() {
 			})
 			.catch(handleFailGetPosts)
 			.finally(() => setIsLoading(false))
-	}, [token])
+	}, [token, reloadPostsObserver])
 
 	return (
 		<PageContainer title='timeline'>
