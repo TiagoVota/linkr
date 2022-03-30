@@ -33,24 +33,35 @@ const LogoContainer = styled.div`
   justify-content: center;
 
   @media(max-width: 650px) {
-		display: none;
+    width: 100%;
+    height: 30%;
+
+    padding-left: 0px;
 	}
 `
 
 const Title = styled.h1`
 	font-family: 'Passion One', sans-serif;
 	font-weight: 700;
-	font-size: 76px;
-	line-height: 84px;
-
+	font-size: 106px;
 	color: #FFFFFF;
+
+	@media(max-width: 650px) {
+		font-size: 76px;
+		text-align: center;
+	}
 `
 
 const Headline = styled.h1`
 	font-family: 'Oswald', sans-serif;
 	font-weight: 700;
-	font-size: 23px;
-	line-height: 34px;
-
+	font-size: 43px;
+	line-height: 50px;
 	color: #FFFFFF;
+	
+	@media(max-width: 650px) {
+		font-size: 23px;
+		line-height: 34px;
+		text-align: center;
+	}
 `
