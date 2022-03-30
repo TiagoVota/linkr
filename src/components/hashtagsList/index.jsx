@@ -20,7 +20,7 @@ function HashtagsList(){
 				setHashtags(response.data)
 		})
 		return () => { isMounted = false }
-	}, [hashtags])
+	}, [token])
 	
 
 	return (
