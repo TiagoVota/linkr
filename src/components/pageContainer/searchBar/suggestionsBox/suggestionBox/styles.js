@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 
+const imgContainerWidth = 'max(12%, 80px)'
+const followingMsgWidth = '95px'
+
 const Container = styled.li`
 	width: 100%;
 	height: 55px;
@@ -19,9 +22,10 @@ const Container = styled.li`
 `
 
 const ImgContainer = styled.div`
+	width: ${imgContainerWidth};
+
 	display: flex;
 	justify-content: center;
-	flex-grow: 12;
 `
 
 const UserImg = styled.img`
@@ -32,12 +36,13 @@ const UserImg = styled.img`
 `
 
 const NameContainer = styled.div`
+	width: calc(100% - ${imgContainerWidth});
+	padding-right: 10px;
+
 	display: flex;
 	justify-content: start;
-	flex-grow: 78;
-`
+	align-items: center;
 
-const UserName = styled.h3`
 	font-size: 19px;
 	line-height: 23px;
 
@@ -47,6 +52,25 @@ const UserName = styled.h3`
 	}
 `
 
+const UserName = styled.h3`
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	display: -webkit-box;
+
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+`
+
+const FollowingH3 = styled.h4`
+	width: ${followingMsgWidth};
+	margin-left: 7px;
+
+	flex-shrink: 0;
+
+	color: #C5C5C5;
+`
+
 
 export {
 	Container,
@@ -54,5 +78,6 @@ export {
 	UserName,
 	ImgContainer,
 	NameContainer,
+	FollowingH3,
 }
 
