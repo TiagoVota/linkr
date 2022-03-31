@@ -25,7 +25,6 @@ function DeleteContainer ({postId}) {
 						.then(() => {
 							setIsLoading(false)
 							warnReloadPosts()
-							// window.location.reload()
 						})
 						.catch(() => {
 							setIsLoading(false)
