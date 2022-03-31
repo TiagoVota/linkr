@@ -12,13 +12,17 @@ import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import NoPosts from '../../components/posts/noPosts'
 
+
 function UserPage() {
 	const { auth: { token } } = useAuth()
 	const { reloadPostsObserver } = useReloadPosts()
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
-	const {userId} = useParams()
-	const title = `${postsList[0]?.username}'s posts`
+	const { userId } = useParams()
+
+	const username = postsList[0]?.username
+	const title = Boolean(username) ? `${username}'s posts` : ''
+	const picture = postsList[0]?.picture
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -53,7 +57,7 @@ function UserPage() {
 			{loading ?
 				<PostLoading />
 				:
-				<PageContainer title={title} picture={postsList[0]?.picture}>
+				<PageContainer title={title} picture={picture}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This user doesn\'t exist'}/> :
 						<Posts postsList={postsList} userPage={true}/>

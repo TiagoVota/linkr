@@ -9,7 +9,7 @@ import useReloadPosts from '../../../hooks/useReloadPosts'
 import api from '../../../services/api.post'
 import { removeHashtag } from '../../../utils/strManipulate'
 
-import LinkContent from './LinkContent'
+import LinkContent from './linkContent'
 import DeleteContainer from './Delete'
 import LikeAction from './likeAction'
 import CommentAction from './Comments/Button'
@@ -37,8 +37,6 @@ const Post = ({ postInfo }) => {
 		message,
 		likes,
 	} = postInfo
-
-	console.log({ likes })
 	const navigate = useNavigate()
 	const [inputIsOpen, setInputIsOpen] = useState(false)
 	const [newMessage, setNewMessage] = useState('')
@@ -62,9 +60,6 @@ const Post = ({ postInfo }) => {
 				setInputIsOpen(false)
 				setAble(true)
 				warnReloadPosts()
-				// setTimeout(() => {
-				// 	// window.location.reload()
-				// }, 1500)
 			})
 	}
 
