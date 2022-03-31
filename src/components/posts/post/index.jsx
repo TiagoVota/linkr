@@ -43,6 +43,7 @@ const Post = ({ postInfo }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [able, setAble] = useState(true)
 	const [showComments, setShowComments] = useState(false)
+	const [numberOfComments, setNumberOfComments] = useState(0)
 
 	const { auth: { authDetails: { id: myUserId },  token } } = useAuth()
 
@@ -93,7 +94,11 @@ const Post = ({ postInfo }) => {
 					/>
 
 					<LikeAction likes={likes} postId={postId} />
-					<CommentAction showComments={showComments} setShowComments={setShowComments}/>
+					<CommentAction 
+						showComments={showComments} 
+						setShowComments={setShowComments}
+						numberOfComments={numberOfComments}	
+					/>
 				</ActionsContainer>
 
 				<PublicationContainer>
@@ -139,7 +144,11 @@ const Post = ({ postInfo }) => {
 				</PublicationContainer>
 
 			</Container>
-			<CommentSection showComments={showComments}>oi</CommentSection>
+			<CommentSection 
+				showComments={showComments} 
+				postId={postId}
+				setNumberOfComments={setNumberOfComments}
+			/>
 		</PostContainer>
 	)
 }

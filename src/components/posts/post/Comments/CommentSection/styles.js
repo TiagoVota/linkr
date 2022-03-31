@@ -8,6 +8,16 @@ const Container = styled.div`
 	padding-top: 13px;
 `
 
+const CommentsList = styled.div`
+	max-height: 170px;
+
+	overflow: scroll;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+`
+
 const Comment = styled.div`
 	width: 90%;
 	
@@ -45,10 +55,10 @@ const Message = styled.p`
 const NewCommentContainer = styled.div`
 	width: 100%;
 	height: 39px;
-
+	
 	background: #252525;
 
-  border-radius: 8px;
+ border-radius: 8px;
 
 	display: flex;
 	align-items: center;
@@ -60,7 +70,7 @@ const NewComment = styled.textarea`
 	box-sizing: border-box;
 	
 	width: 90%;
-	word-break: break-all;
+	word-break: break-word;
 	
 	font-family: 'Lato';
 	font-style: italic;
@@ -77,6 +87,7 @@ const NewComment = styled.textarea`
 export {
 	Container,
 	Comment,
+	CommentsList,
 	Picture,
 	Username,
 	Message,

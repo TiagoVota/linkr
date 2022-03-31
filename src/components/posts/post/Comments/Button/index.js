@@ -1,7 +1,7 @@
 import { IoChatbubblesOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 
-function CommentAction({ showComments, setShowComments }) {
+function CommentAction({ showComments, setShowComments, numberOfComments }) {
 
 	function handleComment() {
 		setShowComments(!showComments)
@@ -11,7 +11,7 @@ function CommentAction({ showComments, setShowComments }) {
 		<ContainerButton>
 			<IoChatbubblesOutline size='26px' onClick={handleComment} />
 
-			<p className='number'>15 comments</p>
+			<p>{numberOfComments} comments</p>
 		</ContainerButton>
 	)
 }
