@@ -23,12 +23,26 @@ function updatePost(postId, token, message) {
 	return axios.put(`${POST_URL}/${postId}`, {message}, makeConfig(token))
 }
 
+function existingRepost(postId, token) {
+	return axios.get(`${POST_URL}/repost/${postId}`, makeConfig(token))
+}
+
+function createRepost(body, token) {
+	return axios.post(`${POST_URL}/repost`, body, makeConfig(token))
+}
+
+function deleteRepost(postId, token) {
+	return axios.delete(`${POST_URL}/repost/${postId}`, makeConfig(token))
+}
 
 const api = {
 	getTimelinePosts,
 	createPost,
 	sendDeletePostRequest,
 	updatePost,
+	existingRepost,
+	createRepost,
+	deleteRepost
 }
 
 

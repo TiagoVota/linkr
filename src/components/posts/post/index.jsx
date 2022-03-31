@@ -26,6 +26,7 @@ import {
 	UsernameText,
 	PostContainer
 } from './styles'
+import RepostContent from './repostAction'
 
 
 const Post = ({ postInfo }) => {
@@ -38,7 +39,6 @@ const Post = ({ postInfo }) => {
 		likes,
 	} = postInfo
 
-	console.log({ likes })
 	const navigate = useNavigate()
 	const [inputIsOpen, setInputIsOpen] = useState(false)
 	const [newMessage, setNewMessage] = useState('')
@@ -97,6 +97,7 @@ const Post = ({ postInfo }) => {
 					/>
 
 					<LikeAction likes={likes} postId={postId} />
+					<RepostContent postId={postId}/>
 					<CommentAction showComments={showComments} setShowComments={setShowComments}/>
 				</ActionsContainer>
 
