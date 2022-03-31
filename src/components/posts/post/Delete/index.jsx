@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import useAuth from '../../../../hooks/useAuth'
+import useReloadPosts from '../../../../hooks/useReloadPosts'
+
 import api from '../../../../services/api.post'
 import { confirmModal, errorModal } from '../../../../factories/modalFactory'
 
@@ -9,8 +11,8 @@ import { ContainerDelete} from './styles.js'
 
 
 function DeleteContainer ({postId}) {
-
 	const { auth: { token } } = useAuth()
+	const { warnReloadPosts } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState()
 
 	function handleDelete() {
@@ -22,7 +24,8 @@ function DeleteContainer ({postId}) {
 					api.sendDeletePostRequest(postId, token)
 						.then(() => {
 							setIsLoading(false)
-							window.location.reload()
+							warnReloadPosts()
+							// window.location.reload()
 						})
 						.catch(() => {
 							setIsLoading(false)

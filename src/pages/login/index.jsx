@@ -9,7 +9,7 @@ import { errorModal, successModal } from '../../factories/modalFactory'
 
 import authSchema from '../../schemas/authSchema'
 
-import Logo from '../../components/Logo'
+import Logo from '../../components/logo'
 
 import {
 	Button,
@@ -18,7 +18,7 @@ import {
 	FormContainer,
 	Input,
 	RedirectLink
-} from '../../components/FormComponents'
+} from '../../components/formComponents'
 
 
 function Login() {
@@ -53,7 +53,7 @@ function Login() {
 		const promise = api.login(body)
 
 		promise.then((response) => {
-			successModal('Login realizado!')
+			successModal('Login performed!')
 			login(response.data)
 			navigate('/timeline')
 		})

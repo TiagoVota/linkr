@@ -17,7 +17,7 @@ const PostLoading = () => {
 	}
 
 	useEffect(() => {
-		const timer = setTimeout(updateLoading, 0.75 * MS_TO_SEC)
+		const timer = setTimeout(updateLoading, 0.5 * MS_TO_SEC)
 		return () => clearTimeout(timer)
 	}, [count])
 

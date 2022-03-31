@@ -1,4 +1,4 @@
-import HashtagsList from '../hashtagsList'
+import Trending from '../trending'
 import Header from '../header'
 import SearchBar from './searchBar'
 
@@ -41,7 +41,7 @@ function PageContainer({ children: pageContent, title, picture }) {
 					*/}
 					<FlexContent>
 						{pageContent}
-						{title !== undefined && <HashtagsList/>}
+						{title !== undefined && <Trending/>}
 					</FlexContent>
 				</ContentContainer>
 			</Container>

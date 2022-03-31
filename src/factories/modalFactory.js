@@ -5,7 +5,7 @@ const errorModal = (text) => {
 	Swal.fire({
 		icon: 'error',
 		title: 'Oops...',
-		html: text || 'Algo deu errado!'
+		html: text || 'Something go wrong!'
 	})
 }
 
@@ -25,13 +25,13 @@ const successModal = (title, showConfirmButton, timer) => {
 
 const confirmModal = (text, confirmButtonText, cancelButtonText) => {
 	return Swal.fire({
-		text: text || 'Você não poderá desfazer essa ação!',
+		text: text || 'You can\'t undo this action!',
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#1877F2',
 		cancelButtonColor: '#1877F2',
-		confirmButtonText: confirmButtonText || 'Sim, delete isso!',
-		cancelButtonText: cancelButtonText || 'Cancelar!',
+		confirmButtonText: confirmButtonText || 'Yes, delete this!',
+		cancelButtonText: cancelButtonText || 'Cancel!',
 		color: '#FFFFFF',
 		background: '#333333',
 	})

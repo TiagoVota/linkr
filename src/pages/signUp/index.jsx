@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { handleValidation } from '../../validations/handleValidation'
 import { errorModal, successModal } from '../../factories/modalFactory'
-import api from '../../services/api.user'
+import api from '../../services/api.auth'
 
 import signUpSchema from '../../schemas/userSchema'
 
-import Logo from '../../components/Logo/index'
-import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/FormComponents'
+import Logo from '../../components/logo'
+import { Button, Container, Form, FormContainer, Input, RedirectLink } from '../../components/formComponents'
 
 
 function SignUp(){
@@ -41,7 +41,7 @@ function SignUp(){
 		const promise = api.createUser(body)
 
 		promise.then(() => {
-			successModal('Cadastro realizado!')
+			successModal('Sign up performed!')
 			clearForm()
 
 			navigate('/')

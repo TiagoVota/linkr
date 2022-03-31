@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import useAuth from '../../hooks/useAuth'
+import useReloadPosts from '../../hooks/useReloadPosts'
 
 import api from '../../services/api.hashtags'
 import { errorModal } from '../../factories/modalFactory'
@@ -14,6 +15,7 @@ import NoPosts from '../../components/posts/noPosts'
 
 function HashtagPage() {
 	const { auth: { token } } = useAuth()
+	const { reloadPostsObserver } = useReloadPosts()
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const { hashtag } = useParams()
@@ -34,18 +36,16 @@ function HashtagPage() {
 		setLoading(true)
 
 		api.getHashtag(hashtag, token)
-			.then(({ data }) => {
-				return setPostsList(data)
-			})
+			.then(({ data }) => setPostsList(data))
 			.catch(handleFailGetHashtag)
 			.finally(() => setLoading(false))
-	}, [hashtag])
+	}, [token, reloadPostsObserver])
 
 	return (
 		<>
 			{loading ?
 				<PostLoading/> : 
-				<PageContainer title={postsList[0]?.hashtagName}>
+				<PageContainer title={`#${hashtag}`}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This hashtag doesn\'t exist'}/> : 
 						<Posts postsList={postsList}/>}
