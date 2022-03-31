@@ -1,6 +1,6 @@
 import { useState, createContext } from 'react'
 
-import defaultPicture from '../assets/images/profile-nav-signup.png'
+import defaultPicture from '../assets/images/default-user-picture.png'
 
 
 const AuthContext = createContext()

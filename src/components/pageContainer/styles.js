@@ -25,6 +25,9 @@ const Title = styled.div`
 	font-weight: 700;
 	font-size: 43px;
 	line-height: 64px;
+
+	overflow: hidden;
+	
 	color: #FFFFFF;
 
 	@media(max-width: 650px) {

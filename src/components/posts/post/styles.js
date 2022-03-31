@@ -84,6 +84,8 @@ const UsernameText = styled.h2`
 	font-size: 19px;
 	line-height: 23px;
 
+	word-break: break-word;
+
 	color: #FFFFFF;
 
 	:hover {
@@ -101,6 +103,8 @@ const MessageText = styled.h3`
 
 	font-size: 17px;
 	line-height: 20px;
+
+	word-break: break-word;
 
 	color: #B7B7B7;
 

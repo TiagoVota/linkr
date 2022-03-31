@@ -9,7 +9,7 @@ import useReloadPosts from '../../../hooks/useReloadPosts'
 import api from '../../../services/api.post'
 import { removeHashtag } from '../../../utils/strManipulate'
 
-import LinkContent from './LinkContent'
+import LinkContent from './linkContent'
 import DeleteContainer from './Delete'
 import LikeAction from './likeAction'
 import CommentAction from './Comments/Button'
