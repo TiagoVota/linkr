@@ -1,26 +1,28 @@
-import { Container, Hashtag, List } from './style'
-import { removeHashtag } from '../../utils/strManipulate'
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import api from '../../services/api.hashtags'
+import { useNavigate } from 'react-router-dom'
+
 import useAuth from '../../hooks/useAuth'
+import useReloadPosts from '../../hooks/useReloadPosts'
+
+import api from '../../services/api.hashtags'
+import { removeHashtag } from '../../utils/strManipulate'
+
+import { Container, Hashtag, List } from './style'
 
 
-function HashtagsList(){
+function Trending(){
 	const navigate = useNavigate()
 	const { auth: { token } } = useAuth()
+	const { reloadPostsObserver } = useReloadPosts()
 	const [hashtags, setHashtags] = useState([])
 
 	useEffect(() => {
-		let isMounted = true
 		const promise = api.getHashtags(token)
 
 		promise.then((response) => {
-			if (isMounted)
-				setHashtags(response.data)
+			setHashtags(response.data)
 		})
-		return () => { isMounted = false }
-	}, [hashtags])
+	}, [token, reloadPostsObserver])
 	
 
 	return (
@@ -37,4 +39,4 @@ function HashtagsList(){
 	)
 }
 
-export default HashtagsList
+export default Trending

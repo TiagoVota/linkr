@@ -1,24 +1,5 @@
 import styled from 'styled-components'
 
-function Logo(){
-	return (
-		<LogoContainer>
-			<div>
-				<Title>
-					linkr
-				</Title>
-				<Headline>
-					save, share and discover <br />
-					the best links on the web
-				</Headline>
-			</div>
-		</LogoContainer>
-	)
-}
-
-
-export default Logo
-
 
 const LogoContainer = styled.div`
 	width: 60%;
@@ -65,3 +46,10 @@ const Headline = styled.h1`
 		text-align: center;
 	}
 `
+
+
+export {
+	LogoContainer,
+	Title,
+	Headline,
+}

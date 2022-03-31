@@ -4,14 +4,16 @@ import { TiPencil } from 'react-icons/ti'
 import ReactHashtag from '@mdnm/react-hashtag'
 
 import useAuth from '../../../hooks/useAuth'
-
-import { removeHashtag } from '../../../utils/strManipulate'
+import useReloadPosts from '../../../hooks/useReloadPosts'
 
 import api from '../../../services/api.post'
+import { removeHashtag } from '../../../utils/strManipulate'
 
 import LinkContent from './LinkContent'
 import DeleteContainer from './Delete'
 import LikeAction from './likeAction'
+import CommentAction from './Comments/Button'
+import CommentSection from './Comments/CommentSection'
 
 import {
 	ActionsContainer,
@@ -24,8 +26,6 @@ import {
 	UsernameText,
 	PostContainer
 } from './styles'
-import CommentAction from './Comments/Button'
-import CommentSection from './Comments/CommentSection'
 
 
 const Post = ({ postInfo }) => {
@@ -37,6 +37,7 @@ const Post = ({ postInfo }) => {
 		message,
 		likes,
 	} = postInfo
+
 	const navigate = useNavigate()
 	const [inputIsOpen, setInputIsOpen] = useState(false)
 	const [newMessage, setNewMessage] = useState('')
@@ -45,7 +46,8 @@ const Post = ({ postInfo }) => {
 	const [showComments, setShowComments] = useState(false)
 	const [numberOfComments, setNumberOfComments] = useState(0)
 
-	const { auth: { authDetails: { id: myUserId },  token } } = useAuth()
+	const { auth: { authDetails: { id: myUserId }, token } } = useAuth()
+	const { warnReloadPosts } = useReloadPosts()
 
 	function goToUserPost() { navigate(`/user/${userId}`) }
 
@@ -56,12 +58,10 @@ const Post = ({ postInfo }) => {
 	function submitEditPost(newMessage) {
 		api.updatePost(postId, token, newMessage)
 			.then(() => {
-				setTimeout(() => {
-					setDisabled(false)
-					setInputIsOpen(false)
-					setAble(true)
-					window.location.reload()
-				}, 1500)
+				setDisabled(false)
+				setInputIsOpen(false)
+				setAble(true)
+				warnReloadPosts()
 			})
 	}
 

@@ -4,7 +4,8 @@ import { IoSearch } from 'react-icons/io5'
 
 import useAuth from '../../../../hooks/useAuth'
 
-import * as api from '../../../../services/api.users'
+import api from '../../../../services/api.user'
+import { makeSearchName } from '../../../../helpers/searchHelper'
 
 import { FormContainer, StyledDebounceInput, SearchButton } from './styles'
 
@@ -21,7 +22,7 @@ function SearchForm({ suggestions, setSuggestions, setIsSearching }) {
 
 	useEffect(() => {
 		if (search.length < 3 || search.includes('#')) return setSuggestions([])
-		api.getUsers({ token, userName: search })
+		api.getUsers({ token, userName: makeSearchName(search) })
 			.then(({ data }) => setSuggestions(data))
 	}, [search])
 

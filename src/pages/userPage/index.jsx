@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import useAuth from '../../hooks/useAuth'
+import useReloadPosts from '../../hooks/useReloadPosts'
 
+import api from '../../services/api.user'
 import { errorModal } from '../../factories/modalFactory'
 
 import PageContainer from '../../components/pageContainer'
 import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
-import api from '../../services/api.user'
-import { useParams } from 'react-router-dom'
 import NoPosts from '../../components/posts/noPosts'
 
 function UserPage() {
 	const { auth: { token } } = useAuth()
+	const { reloadPostsObserver } = useReloadPosts()
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const {userId} = useParams()
@@ -44,7 +46,7 @@ function UserPage() {
 			handleFailGetPosts
 			setLoading(false)
 		})
-	}, [token, userId])
+	}, [token, userId, reloadPostsObserver])
 
 	return (
 		<>

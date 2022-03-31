@@ -29,7 +29,7 @@ function CommentSection({ showComments, postId, setNumberOfComments }) {
 			setComments(response.data)
 			setNumberOfComments(response.data.length)
 		})
-	}, [comments])
+	}, [newComment])
 
 	function handleComment() {
 		if (newComment !== '') {
