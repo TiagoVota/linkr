@@ -13,6 +13,15 @@ const Container = styled.div`
 	display: flex;
 	justify-content: start;
 
+	h4, h5, h6, img {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-word;
+		display: -webkit-box;
+
+		-webkit-box-orient: vertical;
+	}
+
 	:hover {
 		cursor: pointer;
 	}
@@ -47,6 +56,8 @@ const TitleText = styled.h4`
 	font-size: 16px;
 	line-height: 19px;
 
+	-webkit-line-clamp: 2;
+
 	@media(max-width: 650px) {
 		font-size: 11px;
 		line-height: 13px;
@@ -59,6 +70,8 @@ const DescriptionText = styled.h5`
 	font-size: 11px;
 	line-height: 13px;
 
+	-webkit-line-clamp: 3;
+
 	color: #9B9595;
 
 	@media(max-width: 650px) {
@@ -70,6 +83,8 @@ const DescriptionText = styled.h5`
 const LinkText = styled.h6`
 	font-size: 11px;
 	line-height: 13px;
+	
+	-webkit-line-clamp: 1;
 
 	@media(max-width: 650px) {
 		font-size: 9px;
@@ -82,6 +97,13 @@ const LinkImg = styled.img`
 	height: ${containerHeight};
 
 	border-radius: 0px 12px 13px 0px;
+
+	font-size: 11px;
+	line-height: 13px;
+
+	-webkit-line-clamp: 12;
+	
+	color: #9B9595;
 	
 	@media(max-width: 650px) {
 		width: ${imgMobileWidth};

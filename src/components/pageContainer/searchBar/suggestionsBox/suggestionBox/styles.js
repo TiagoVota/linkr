@@ -62,11 +62,13 @@ const UserName = styled.h3`
 	-webkit-box-orient: vertical;
 `
 
-const FollowingH3 = styled.h4`
+const FollowingH4 = styled.h4`
 	width: ${followingMsgWidth};
 	margin-left: 7px;
 
 	flex-shrink: 0;
+	
+	white-space: nowrap;
 
 	color: #C5C5C5;
 `
@@ -78,6 +80,6 @@ export {
 	UserName,
 	ImgContainer,
 	NameContainer,
-	FollowingH3,
+	FollowingH4,
 }
 

@@ -6,7 +6,7 @@ import {
 	NameContainer,
 	UserImg,
 	UserName,
-	FollowingH3,
+	FollowingH4,
 } from './styles'
 
 
@@ -29,7 +29,7 @@ function SuggestionBox({ userInfo }) {
 					{username}
 				</UserName>
 
-				{isFollowing && <FollowingH3>• following</FollowingH3>}
+				{isFollowing && <FollowingH4>• following</FollowingH4>}
 			</NameContainer>
 		</Container>
 	)

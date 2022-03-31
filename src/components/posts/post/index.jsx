@@ -9,7 +9,7 @@ import useReloadPosts from '../../../hooks/useReloadPosts'
 import api from '../../../services/api.post'
 import { removeHashtag } from '../../../utils/strManipulate'
 
-import LinkContent from './LinkContent'
+import LinkContent from './linkContent'
 import DeleteContainer from './Delete'
 import LikeAction from './likeAction'
 import CommentAction from './Comments/Button'
@@ -45,6 +45,7 @@ const Post = ({ postInfo }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [able, setAble] = useState(true)
 	const [showComments, setShowComments] = useState(false)
+	const [numberOfComments, setNumberOfComments] = useState(0)
 
 	const { auth: { authDetails: { id: myUserId }, token } } = useAuth()
 	const { warnReloadPosts } = useReloadPosts()
@@ -62,9 +63,6 @@ const Post = ({ postInfo }) => {
 				setInputIsOpen(false)
 				setAble(true)
 				warnReloadPosts()
-				// setTimeout(() => {
-				// 	// window.location.reload()
-				// }, 1500)
 			})
 	}
 
@@ -98,7 +96,11 @@ const Post = ({ postInfo }) => {
 
 					<LikeAction likes={likes} postId={postId} />
 					<RepostContent postId={postId}/>
-					<CommentAction showComments={showComments} setShowComments={setShowComments}/>
+					<CommentAction 
+						showComments={showComments} 
+						setShowComments={setShowComments}
+						numberOfComments={numberOfComments}	
+					/>
 				</ActionsContainer>
 
 				<PublicationContainer>
@@ -144,7 +146,11 @@ const Post = ({ postInfo }) => {
 				</PublicationContainer>
 
 			</Container>
-			<CommentSection showComments={showComments}>oi</CommentSection>
+			<CommentSection 
+				showComments={showComments} 
+				postId={postId}
+				setNumberOfComments={setNumberOfComments}
+			/>
 		</PostContainer>
 	)
 }
