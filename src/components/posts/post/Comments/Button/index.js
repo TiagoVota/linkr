@@ -8,8 +8,8 @@ function CommentAction({ showComments, setShowComments, numberOfComments }) {
 	}
 
 	return (
-		<ContainerButton>
-			<IoChatbubblesOutline size='26px' onClick={handleComment} />
+		<ContainerButton onClick={handleComment}>
+			<IoChatbubblesOutline size='26px' />
 
 			<p>{numberOfComments} comments</p>
 		</ContainerButton>
