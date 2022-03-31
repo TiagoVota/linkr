@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { CgRepeat } from 'react-icons/cg'
 
 import { confirmModal, errorModal } from '../../../../factories/modalFactory'
@@ -12,9 +13,26 @@ function RepostContent({ postId }) {
 	const body = {postId}
 	const { auth: { token } } = useAuth()
 	const { warnReloadPosts } = useReloadPosts()
+	const [countRepost, setCountRepost] = useState()
+	const [reload, setReload] = useState(false)
+
+	useEffect(() => {
+		getNumberRepost()
+	}, [reload])
+
+	function getNumberRepost() {
+		api.numberRepost(postId, token)
+			.then(({ data }) => {
+				setCountRepost(data)
+			})
+			.catch((error) => {
+				errorModal(error)
+			})
+	}
 
 	function verifyRepost(e) {
 		e.preventDefault()
+		handleReload()
 		api.existingRepost(postId, token)
 			.then(({ data }) => {
 				if(!data) {
@@ -52,6 +70,10 @@ function RepostContent({ postId }) {
 			})
 	}
 
+	function handleReload() {
+		setReload(!reload)
+	}
+
 	return(
 		<Container onClick={(e) => {
 			verifyRepost(e)
@@ -61,7 +83,7 @@ function RepostContent({ postId }) {
 				size='26px'
 			/>
 			<p>
-				0 re-posts
+				<span>{countRepost} </span>{countRepost === 1 ? 're-post' : 're-posts'}
 			</p>
 		</Container>
 	)

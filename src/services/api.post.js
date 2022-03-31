@@ -35,6 +35,10 @@ function deleteRepost(postId, token) {
 	return axios.delete(`${POST_URL}/repost/${postId}`, makeConfig(token))
 }
 
+function numberRepost(postId, token) {
+	return axios.get(`${POST_URL}/repost/count/${postId}`, makeConfig(token))
+}
+
 const api = {
 	getTimelinePosts,
 	createPost,
@@ -42,7 +46,8 @@ const api = {
 	updatePost,
 	existingRepost,
 	createRepost,
-	deleteRepost
+	deleteRepost,
+	numberRepost
 }
 
 
