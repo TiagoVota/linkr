@@ -11,6 +11,7 @@ import CreatePost from './createPost'
 import PageContainer from '../../components/pageContainer'
 import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
+import LoadPostsButton from '../../components/loadPosts'
 
 function Timeline() {
 	const { auth: { token } } = useAuth()
@@ -49,6 +50,7 @@ function Timeline() {
 				:
 				<div>
 					<CreatePost setPost={setPostsList}/>
+					<LoadPostsButton/>
 					<Posts postsList={postsList} />
 				</div>
 			}
