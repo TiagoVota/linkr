@@ -63,7 +63,7 @@ function Timeline() {
 				? <PostLoading />
 				:
 				<div>
-					<CreatePost setPost={setPostsList}/>
+					<CreatePost setPost={setPostsList} setNumberOfNewPosts={setNumberOfNewPosts}/>
 					{numberOfNewPosts !== 0 &&
 						<LoadPostsButton 
 							numberOfPosts={numberOfNewPosts}

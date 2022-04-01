@@ -10,7 +10,7 @@ function LoadPostsButton({ numberOfPosts, setPostsList, newPosts, setNumberOfNew
 
 	return (
 		<Button onClick={handleNewPosts}>
-			{numberOfPosts} new posts, load more!
+			{numberOfPosts} {numberOfPosts === 1 ? 'post' : 'posts'}, load more!
 			<IoRefresh size='20px' />
 		</Button>
 	)

@@ -9,7 +9,7 @@ import { errorModal, successModal } from '../../../factories/modalFactory'
 import { Create, Link, Message, Form, Button, Avatar } from './styles'
 
 
-function CreatePost({setPost}) {
+function CreatePost({setPost, setNumberOfNewPosts}) {
 	const [link, setLink] = useState('')
 	const [message, setMessage] = useState('')
 	const [disable, setDisable] = useState(false)
@@ -36,6 +36,7 @@ function CreatePost({setPost}) {
 			api.getTimelinePosts({ token })
 				.then(({ data }) => {
 					setPost(data)
+					setNumberOfNewPosts(0)
 					warnReloadPosts()
 				})
 		})
