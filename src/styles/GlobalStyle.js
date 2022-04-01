@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 		background-color: #1877F2;
 		opacity: ${p => p.isDisable ? 0.7 : 1};
 
-		cursor: ${p => p.isDisable ? 'none' : 'pointer'};
+		cursor: ${p => p.isDisable ? 'wait' : 'pointer'};
 
 		:hover {
 			filter: brightness(90%);
