@@ -9,7 +9,7 @@ import { errorModal, successModal } from '../../../factories/modalFactory'
 import { Create, Link, Message, Form, Button, Avatar } from './styles'
 
 
-function CreatePost({setPost, setNumberOfNewPosts}) {
+function CreatePost({setOffset, offset, setPostsList, setNumberOfNewPosts}) {
 	const [link, setLink] = useState('')
 	const [message, setMessage] = useState('')
 	const [disable, setDisable] = useState(false)
@@ -28,20 +28,22 @@ function CreatePost({setPost, setNumberOfNewPosts}) {
 
 		const promise = api.createPost(body, token)
 
-		promise.then((response) => {
+		promise.then(() => {
 			successModal('Post published!')
 			setMessage('')
 			setLink('')
 			setDisable(false)
-			api.getTimelinePosts({ token })
+			setOffset(0)
+
+			api.getTimelinePosts(offset, token)
 				.then(({ data }) => {
-					setPost(data)
 					setNumberOfNewPosts(0)
+					setPostsList(data)
 					warnReloadPosts()
 				})
 		})
 
-		promise.catch((error) => {
+		promise.catch(() => {
 			errorModal('There was an error publishing your link!')
 			setDisable(false)
 		})

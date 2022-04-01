@@ -11,9 +11,9 @@ import { makeTimelinePostMessage } from '../../helpers/postHelper'
 import CreatePost from './createPost'
 
 import PageContainer from '../../components/pageContainer'
-import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import LoadPostsButton from '../../components/loadPosts'
+import Scroller from '../../components/infiniteScroller'
 
 function Timeline() {
 	const { auth: { token } } = useAuth()
@@ -22,6 +22,7 @@ function Timeline() {
 	const [postsList, setPostsList] = useState([])
 	const [newPosts, setNewPosts] = useState([])
 	const [numberOfNewPosts, setNumberOfNewPosts] = useState(0)
+	const [offset, setOffset] = useState(0)
 	const noPostsMessage = makeTimelinePostMessage(postsList)
 
 	function handleFailGetPosts({ response: { status }}) {
@@ -38,8 +39,8 @@ function Timeline() {
 	
 	useEffect(() => {
 		setIsLoading(true)
-
-		api.getTimelinePosts({ token })
+	
+		api.getTimelinePosts(offset, token)
 			.then(({ data }) => {
 				return setPostsList(data)
 			})
@@ -48,16 +49,26 @@ function Timeline() {
 	}, [token, reloadPostsObserver])
 
 	useInterval(() => {
-		api.getTimelinePosts({ token })
+		console.log(offset)
+		api.getTimelinePosts(0, token)
 			.then(({data}) => {
-				if(data.length > postsList.length){
-					setNumberOfNewPosts(data.length - postsList.length)
+				console.log('------', data)
+				console.log(postsList)
+
+				const equals = (data, postsList) => JSON.stringify(data) === JSON.stringify(postsList)
+				if(!equals(data, postsList)){
+					setNumberOfNewPosts(3)
 					setNewPosts(data)
+					
+					
+					const filteredPosts = data.filter(post => !postsList.includes(post) )
+					console.log(filteredPosts)
 				}else{
 					setNumberOfNewPosts(0)
 				}
 			})
 	}, 5000)
+
 
 	return (
 		<PageContainer title='timeline'>
@@ -65,16 +76,24 @@ function Timeline() {
 				? <PostLoading />
 				:
 				<div>
-					<CreatePost setPost={setPostsList} setNumberOfNewPosts={setNumberOfNewPosts}/>
-					{numberOfNewPosts !== 0 &&
-						<LoadPostsButton 
-							numberOfPosts={numberOfNewPosts}
-							setPostsList={setPostsList}
-							newPosts={newPosts}
-							setNumberOfNewPosts={setNumberOfNewPosts}
-						/>
-					}
-					<Posts
+					<CreatePost 						
+						setOffset={setOffset}
+						offset={offset} 
+						setPostsList={setPostsList}
+						setNumberOfNewPosts={setNumberOfNewPosts}
+					/>
+					{/* {numberOfNewPosts !== 0 && */}
+					<LoadPostsButton 
+						numberOfPosts={numberOfNewPosts}
+						setPostsList={setPostsList}
+						newPosts={newPosts}
+						setNumberOfNewPosts={setNumberOfNewPosts}
+					/>
+					{/* } */}
+					<Scroller 
+						setOffset={setOffset}
+						offset={offset} 
+						setPostsList={setPostsList}
 						postsList={postsList}
 						noPostsMessage={noPostsMessage}
 					/>
