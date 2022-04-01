@@ -4,7 +4,7 @@ import Post from './post'
 
 function Posts({ postsList, userPage, noPostsMessage }) {
 	const havePosts = Boolean(postsList?.[0]?.postId)
-	console.log({ postsList, havePosts })
+	
 	const message = noPostsMessage || 'There are no posts yet'
 
 	return (
