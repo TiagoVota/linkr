@@ -41,7 +41,7 @@ function UserPage() {
 	useEffect(() => {
 		setLoading(true)
 
-		const promise = api.getUserPosts(offset, userId, token)
+		const promise = api.getUserPosts(0, userId, token)
 
 		promise.then((response) => {
 			setOffset(0)
@@ -54,6 +54,7 @@ function UserPage() {
 			setLoading(false)
 		})
 	}, [token, userId, reloadPostsObserver])
+
 
 	return (
 		<>

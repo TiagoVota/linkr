@@ -19,7 +19,6 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user}) {
 	const [hasMore, setHasMore] = useState(true)
 	const { userId } = useParams()
 
-	console.log('offset no scroller', offset)
 	useEffect(() => {
 		setOffset(offset + 10)
 	},[])
