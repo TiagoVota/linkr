@@ -11,6 +11,7 @@ import PageContainer from '../../components/pageContainer'
 import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import NoPosts from '../../components/posts/noPosts'
+import Scroller from '../../components/infiniteScroller'
 
 
 function UserPage() {
@@ -19,6 +20,7 @@ function UserPage() {
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const { userId } = useParams()
+	const [offset, setOffset] = useState(0)
 
 	const username = postsList[0]?.username
 	const title = Boolean(username) ? `${username}'s posts` : ''
@@ -39,9 +41,10 @@ function UserPage() {
 	useEffect(() => {
 		setLoading(true)
 
-		const promise = api.getUserPosts(userId, token)
+		const promise = api.getUserPosts(offset, userId, token)
 
 		promise.then((response) => {
+			setOffset(0)
 			setPostsList(response.data)
 			setLoading(false)
 		})
@@ -60,7 +63,13 @@ function UserPage() {
 				<PageContainer title={title} picture={picture}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This user doesn\'t exist'}/> :
-						<Posts postsList={postsList} userPage={true}/>
+						<Scroller 
+							setOffset={setOffset}
+							offset={offset} 
+							setPostsList={setPostsList}
+							postsList={postsList}
+							user={postsList}
+						/>
 					}
 				</PageContainer>
 			}

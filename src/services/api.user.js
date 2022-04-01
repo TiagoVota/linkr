@@ -11,8 +11,10 @@ function getUsers({ token, userName }) {
 	return axios.get(`${USER_URL}?userName=${userName}`, makeConfig(token))
 }
 
-function getUserPosts(id, token) {
-	return axios.get(`${USER_URL}/${id}`, makeConfig(token))
+function getUserPosts(offset, id, token) {
+	console.log('offset enviado para o back',offset)
+	console.log('id enviado para o back',id)
+	return axios.get(`${USER_URL}/${id}?offset=${offset}`, makeConfig(token))
 }
 
 

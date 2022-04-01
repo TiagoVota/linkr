@@ -8,13 +8,16 @@ import LoaderSpinner from '../loaderSpinner'
 import InfiniteScroll from 'react-infinite-scroller'
 import apiHashtags from '../../services/api.hashtags'
 import apiPosts from '../../services/api.post'
+import apiUsers from '../../services/api.user'
 
 import { Div } from './style'
+import { useParams } from 'react-router-dom'
 
 
-function Scroller({setOffset, offset, setPostsList, postsList, hashtag}) {
+function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user}) {
 	const { auth: { token } } = useAuth()
 	const [hasMore, setHasMore] = useState(true)
+	const { userId } = useParams()
 
 	console.log('offset no scroller', offset)
 	useEffect(() => {
@@ -27,6 +30,10 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag}) {
 			try {
 				if (hashtag) {
 					const data = await apiHashtags.getHashtag(offset, hashtag, token)
+					return data.data
+				} 
+				if (user) {
+					const data = await apiUsers.getUserPosts(offset, userId, token)
 					return data.data
 				} else {
 					const data = await apiPosts.getTimelinePosts(offset, token)
