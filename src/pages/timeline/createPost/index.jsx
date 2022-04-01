@@ -16,6 +16,8 @@ function CreatePost({setPost}) {
 	const { auth: { token } } = useAuth()
 	const { warnReloadPosts } = useReloadPosts()
 	const {auth} = useAuth()
+	const [offset, setOffset] = useState(0)
+
 
 	function handleSubmit(event) {
 		event.preventDefault()
@@ -33,7 +35,7 @@ function CreatePost({setPost}) {
 			setMessage('')
 			setLink('')
 			setDisable(false)
-			api.getTimelinePosts({ token })
+			api.getTimelinePosts(offset, token)
 				.then(({ data }) => {
 					setPost(data)
 					warnReloadPosts()
