@@ -1,10 +1,16 @@
 import { Button } from './styles'
 import { IoRefresh } from 'react-icons/io5'
 
-function LoadPostsButton() {
+function LoadPostsButton({ numberOfPosts, setPostsList, newPosts, setNumberOfNewPosts }) {
+
+	function handleNewPosts() {
+		setPostsList(newPosts)
+		setNumberOfNewPosts(0)
+	}
+
 	return (
-		<Button>
-			12 new posts, load more!
+		<Button onClick={handleNewPosts}>
+			{numberOfPosts} new posts, load more!
 			<IoRefresh size='20px' />
 		</Button>
 	)

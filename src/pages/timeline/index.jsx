@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import useInterval from 'use-interval'
 
 import useAuth from '../../hooks/useAuth'
 import useReloadPosts from '../../hooks/useReloadPosts'
@@ -18,7 +19,8 @@ function Timeline() {
 	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
-
+	const [newPosts, setNewPosts] = useState([])
+	const [numberOfNewPosts, setNumberOfNewPosts] = useState(0)
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -43,6 +45,18 @@ function Timeline() {
 			.finally(() => setIsLoading(false))
 	}, [token, reloadPostsObserver])
 
+	useInterval(() => {
+		api.getTimelinePosts({ token })
+			.then(({data}) => {
+				if(data.length > postsList.length){
+					setNumberOfNewPosts(data.length - postsList.length)
+					setNewPosts(data)
+				}else{
+					setNumberOfNewPosts(0)
+				}
+			})
+	}, 15000)
+
 	return (
 		<PageContainer title='timeline'>
 			{ isLoading
@@ -50,7 +64,14 @@ function Timeline() {
 				:
 				<div>
 					<CreatePost setPost={setPostsList}/>
-					<LoadPostsButton/>
+					{numberOfNewPosts !== 0 &&
+						<LoadPostsButton 
+							numberOfPosts={numberOfNewPosts}
+							setPostsList={setPostsList}
+							newPosts={newPosts}
+							setNumberOfNewPosts={setNumberOfNewPosts}
+						/>
+					}
 					<Posts postsList={postsList} />
 				</div>
 			}
