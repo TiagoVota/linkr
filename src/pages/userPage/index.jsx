@@ -8,7 +8,6 @@ import api from '../../services/api.user'
 import { errorModal } from '../../factories/modalFactory'
 
 import PageContainer from '../../components/pageContainer'
-import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import NoPosts from '../../components/posts/noPosts'
 import Scroller from '../../components/infiniteScroller'

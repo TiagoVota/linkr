@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 
 
-const ContainerButton = styled.button`
+
+const Container = styled.button`
+
 	width: 100%;
 	height: 45px;
-	margin-top: 19px;
+	margin: 5px 0px;
 
 	display: flex;
 	flex-direction: column;
@@ -20,12 +22,11 @@ const ContainerButton = styled.button`
 	:hover {
 		filter: none;
 	}
-	@media(max-width: 650px){
-    font-size: 9px;
-}
+		@media(max-width: 650){
+			font-size: 9px;
+  }
 `
 
-
 export {
-	ContainerButton,
+	Container
 }

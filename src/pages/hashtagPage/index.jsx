@@ -9,7 +9,6 @@ import { errorModal } from '../../factories/modalFactory'
 
 import PageContainer from '../../components/pageContainer'
 import PostLoading from '../../components/postLoading'
-import Posts from '../../components/posts'
 import NoPosts from '../../components/posts/noPosts'
 import Scroller from '../../components/infiniteScroller'
 

@@ -60,7 +60,7 @@ function Timeline() {
 				setNumberOfNewPosts(newestPost.length)
 				setNewPosts(data)
 			})
-	}, 5000)
+	}, 15000)
 
 
 	return (

@@ -37,7 +37,7 @@ const ContainerButton = styled.button`
 		filter: none;
 	}
 
-  @media(max-width: 650){
+  @media(max-width: 650px){
     font-size: 9px;
   }
 `
