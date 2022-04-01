@@ -16,11 +16,12 @@ import { useParams } from 'react-router-dom'
 
 function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user}) {
 	const { auth: { token } } = useAuth()
-	const [hasMore, setHasMore] = useState(true)
+	const [hasMore, setHasMore] = useState(false)
 	const { userId } = useParams()
 
 	useEffect(() => {
 		setOffset(offset + 10)
+		if (postsList.length === 10) setHasMore(true)
 	},[])
 
 	
