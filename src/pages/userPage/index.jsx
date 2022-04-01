@@ -22,8 +22,11 @@ function UserPage() {
 	const { userId } = useParams()
 	const [offset, setOffset] = useState(0)
 
-	const [{ username, picture, isFollowing }={}] = postsList
-	const title = Boolean(username) ? `${username}'s posts` : ''
+	const [{ username, picture, isFollowing, userSharedName, userSharedPicture }={}] = postsList
+	const pageUsername = userSharedName || username
+	const pagePicture = userSharedPicture || picture
+
+	const title = Boolean(pageUsername) ? `${pageUsername}'s posts` : ''
 	const isFollowButtonDisplay = Boolean(myUserId !== Number(userId))
 
 	function handleFailGetPosts({ response: { status }}) {
@@ -63,7 +66,7 @@ function UserPage() {
 				:
 				<PageContainer
 					title={title}
-					picture={picture}
+					picture={pagePicture}
 					FollowButton={<FollowButton
 						followId={userId}
 						currentFollowState={isFollowing}

@@ -49,7 +49,6 @@ function Timeline() {
 	}, [token, reloadPostsObserver])
 
 	useInterval(() => {
-		console.log(offset)
 		api.getTimelinePosts(0, token)
 			.then(({data}) => {
 				const maxIndex = postsList?.[0]?.postId
