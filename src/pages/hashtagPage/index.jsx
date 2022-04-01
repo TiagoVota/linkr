@@ -39,7 +39,7 @@ function HashtagPage() {
 			.then(({ data }) => setPostsList(data))
 			.catch(handleFailGetHashtag)
 			.finally(() => setLoading(false))
-	}, [token, reloadPostsObserver])
+	}, [token, reloadPostsObserver, hashtag])
 
 	return (
 		<>
