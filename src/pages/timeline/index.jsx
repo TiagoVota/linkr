@@ -52,20 +52,13 @@ function Timeline() {
 		console.log(offset)
 		api.getTimelinePosts(0, token)
 			.then(({data}) => {
-				console.log('------', data)
-				console.log(postsList)
+				const maxIndex = postsList?.[0]?.postId
+				const newestPost = data.filter(({postId}) => postId > maxIndex)
 
-				const equals = (data, postsList) => JSON.stringify(data) === JSON.stringify(postsList)
-				if(!equals(data, postsList)){
-					setNumberOfNewPosts(3)
-					setNewPosts(data)
-					
-					
-					const filteredPosts = data.filter(post => !postsList.includes(post) )
-					console.log(filteredPosts)
-				}else{
-					setNumberOfNewPosts(0)
-				}
+				if(newestPost.length === 0) return setNumberOfNewPosts(0)
+
+				setNumberOfNewPosts(newestPost.length)
+				setNewPosts(data)
 			})
 	}, 5000)
 
@@ -82,14 +75,14 @@ function Timeline() {
 						setPostsList={setPostsList}
 						setNumberOfNewPosts={setNumberOfNewPosts}
 					/>
-					{/* {numberOfNewPosts !== 0 && */}
-					<LoadPostsButton 
-						numberOfPosts={numberOfNewPosts}
-						setPostsList={setPostsList}
-						newPosts={newPosts}
-						setNumberOfNewPosts={setNumberOfNewPosts}
-					/>
-					{/* } */}
+					{numberOfNewPosts !== 0 &&
+						<LoadPostsButton 
+							numberOfPosts={numberOfNewPosts}
+							setPostsList={setPostsList}
+							newPosts={newPosts}
+							setNumberOfNewPosts={setNumberOfNewPosts}
+						/>
+					}
 					<Scroller 
 						setOffset={setOffset}
 						offset={offset} 
