@@ -17,6 +17,10 @@ const ButtonContainer = styled.button`
 	background: ${p => p.isFollowing ? '#FFFFFF' : '#1877F2'};
 	color: ${p => p.isFollowing ? '#1877F2' : '#FFFFFF'};
 
+	opacity: ${p => p.isDisable ? 0.7 : 1};
+
+	cursor: ${p => p.isDisable ? 'wait' : 'pointer'};
+
 	@media(max-width: 650px) {
 		left: 15px;
 		bottom: 10px;

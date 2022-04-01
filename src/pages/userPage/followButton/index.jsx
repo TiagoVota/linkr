@@ -51,6 +51,7 @@ const FollowButton = ({ followId, currentFollowState, isHidden }) => {
 			onClick={handleFollowClick}
 			isFollowing={isFollowing}
 			isDisable={isLoading}
+			disabled={isLoading}
 		>
 			{
 				isLoading
