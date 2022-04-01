@@ -16,6 +16,7 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag}) {
 	const { auth: { token } } = useAuth()
 	const [hasMore, setHasMore] = useState(true)
 
+	console.log('offset no scroller', offset)
 	useEffect(() => {
 		setOffset(offset + 10)
 	},[])
@@ -25,10 +26,9 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag}) {
 		if (hasMore) {
 			try {
 				if (hashtag) {
-					const data = await apiHashtags(offset, hashtag, token)
+					const data = await apiHashtags.getHashtag(offset, hashtag, token)
 					return data.data
 				} else {
-					console.log('getTimelinePosts - scroller')
 					const data = await apiPosts.getTimelinePosts(offset, token)
 					return data.data
 				}

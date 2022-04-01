@@ -18,7 +18,6 @@ function Timeline() {
 	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
-
 	const [offset, setOffset] = useState(0)
 
 	function handleFailGetPosts({ response: { status }}) {
@@ -36,7 +35,6 @@ function Timeline() {
 	useEffect(() => {
 		setIsLoading(true)
 	
-		console.log('offset da timeline',offset)
 		api.getTimelinePosts(offset, token)
 			.then(({ data }) => {
 				return setPostsList(data)
