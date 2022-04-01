@@ -26,7 +26,8 @@ import {
 	UsernameText,
 	PostContainer
 } from './styles'
-import RepostContent from './repostAction'
+import RepostContent from './repostAction/repostButton'
+import { RepostsHeader } from './repostAction/repostHeader'
 
 
 const Post = ({ postInfo }) => {
@@ -37,6 +38,8 @@ const Post = ({ postInfo }) => {
 		picture,
 		message,
 		likes,
+		rePostId,
+		userSharedName
 	} = postInfo
 
 	const navigate = useNavigate()
@@ -86,7 +89,8 @@ const Post = ({ postInfo }) => {
 
 	return (
 		<PostContainer>
-			<Container>
+			<Container rePostId={rePostId}>
+				{rePostId && <RepostsHeader userSharedName={userSharedName} username={username}/>}
 				<ActionsContainer>
 					<ProfileImg
 						src={picture}
@@ -108,12 +112,12 @@ const Post = ({ postInfo }) => {
 						{username}
 					</UsernameText>
 
-					{	Boolean(myUserId !== userId)
+					{	Boolean(myUserId !== userId || rePostId !== undefined)
 						? <></>
 						:	<>
 							<DeleteContainer postId={postId}/>
 
-							<ContainerUpdate>
+							<ContainerUpdate >
 								<TiPencil 
 									onClick={() => openEditPost()}
 									color={'#FFFFFF'}

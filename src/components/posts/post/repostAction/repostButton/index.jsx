@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { CgRepeat } from 'react-icons/cg'
 
-import { confirmModal, errorModal } from '../../../../factories/modalFactory'
-import useAuth from '../../../../hooks/useAuth'
-import useReloadPosts from '../../../../hooks/useReloadPosts'
+import { confirmModal, errorModal } from '../../../../../factories/modalFactory'
+import useAuth from '../../../../../hooks/useAuth'
+import useReloadPosts from '../../../../../hooks/useReloadPosts'
 
-import api from '../../../../services/api.post'
+import api from '../../../../../services/api.post'
 
 import { Container } from './styles'
 
