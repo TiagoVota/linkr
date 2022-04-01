@@ -5,6 +5,7 @@ import useReloadPosts from '../../hooks/useReloadPosts'
 
 import api from '../../services/api.post'
 import { errorModal } from '../../factories/modalFactory'
+import { makeTimelinePostMessage } from '../../helpers/postHelper'
 
 import CreatePost from './createPost'
 
@@ -17,7 +18,7 @@ function Timeline() {
 	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
-
+	const noPostsMessage = makeTimelinePostMessage(postsList)
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -49,7 +50,10 @@ function Timeline() {
 				:
 				<div>
 					<CreatePost setPost={setPostsList}/>
-					<Posts postsList={postsList} />
+					<Posts
+						postsList={postsList}
+						noPostsMessage={noPostsMessage}
+					/>
 				</div>
 			}
 		</PageContainer>

@@ -2,8 +2,10 @@ import NoPosts from './noPosts'
 import Post from './post'
 
 
-function Posts({ postsList, userPage }) {
-	const havePosts = !!(postsList?.[0]?.postId)	
+function Posts({ postsList, userPage, noPostsMessage }) {
+	const havePosts = Boolean(postsList?.[0]?.postId)
+	
+	const message = noPostsMessage || 'There are no posts yet'
 
 	return (
 		<div>
@@ -13,7 +15,7 @@ function Posts({ postsList, userPage }) {
 						key={postInfo.rePostId ? postInfo.rePostId : postInfo.postId}
 						postInfo={postInfo}
 					/>)
-					: <NoPosts message={'There are no posts yet'} userPage={userPage}/>
+					: <NoPosts message={message} userPage={userPage}/>
 			}
 		</div>
 	)
