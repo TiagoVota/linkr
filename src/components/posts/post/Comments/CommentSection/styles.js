@@ -7,6 +7,9 @@ const Container = styled.div`
 
 	padding-top: 13px;
 	width: 611px;
+	@media(max-width: 650px){
+    width: 100%;
+}
 `
 
 const CommentsList = styled.div`

@@ -99,12 +99,12 @@ const Post = ({ postInfo }) => {
 					/>
 
 					<LikeAction likes={likes} postId={postId} />
-					<RepostContent postId={postId}/>
 					<CommentAction 
 						showComments={showComments} 
 						setShowComments={setShowComments}
 						numberOfComments={numberOfComments}	
 					/>
+					<RepostContent postId={postId}/>
 				</ActionsContainer>
 
 				<PublicationContainer>

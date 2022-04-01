@@ -20,6 +20,9 @@ const ContainerButton = styled.button`
 	:hover {
 		filter: none;
 	}
+	@media(max-width: 650px){
+    font-size: 9px;
+}
 `
 
 
