@@ -44,8 +44,8 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag}) {
 			setPostsList([...postsList, ...fetchedPosts])
 			if (fetchedPosts.length < 10) {
 				setHasMore(false)
-				console.log('hasmore', hasMore)
 			}
+			setOffset(offset + 10)
 		} catch (error) {
 			console.log(error)
 		}

@@ -35,10 +35,10 @@ function Timeline() {
 	
 	useEffect(() => {
 		setIsLoading(true)
-
+	
+		console.log('offset da timeline',offset)
 		api.getTimelinePosts(offset, token)
 			.then(({ data }) => {
-				// setOffset(offset + 10)
 				return setPostsList(data)
 			})
 			.catch(handleFailGetPosts)
@@ -51,7 +51,10 @@ function Timeline() {
 				? <PostLoading />
 				:
 				<div>
-					<CreatePost setPost={setPostsList}/>
+					<CreatePost 						
+						setOffset={setOffset}
+						offset={offset} 
+						setPostsList={setPostsList}/>
 					{/* <Posts postsList={postsList} /> */}
 					<Scroller 
 						setOffset={setOffset}
