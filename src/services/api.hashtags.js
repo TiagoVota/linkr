@@ -15,8 +15,8 @@ function getHashtags(token) {
 	return axios.get(`${HASHTAG_URL}`, makeConfig(token))
 }
 
-function getHashtag(hashtagId, token) {
-	return axios.get(`${HASHTAG_URL}/${hashtagId}`, makeConfig(token))
+function getHashtag(offset, hashtagId, token) {
+	return axios.get(`${HASHTAG_URL}/${hashtagId}?offset=${offset}`, makeConfig(token))
 }
 
 const api = {
