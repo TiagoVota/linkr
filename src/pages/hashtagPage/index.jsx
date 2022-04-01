@@ -9,8 +9,8 @@ import { errorModal } from '../../factories/modalFactory'
 
 import PageContainer from '../../components/pageContainer'
 import PostLoading from '../../components/postLoading'
-import Posts from '../../components/posts'
 import NoPosts from '../../components/posts/noPosts'
+import Scroller from '../../components/infiniteScroller'
 
 
 function HashtagPage() {
@@ -19,6 +19,7 @@ function HashtagPage() {
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const { hashtag } = useParams()
+	const [offset, setOffset] = useState(0)
 
 	function handleFailGetHashtag({ response: { status }}) {
 		const msgStatus = {
@@ -35,11 +36,14 @@ function HashtagPage() {
 	useEffect(() => {
 		setLoading(true)
 
-		api.getHashtag(hashtag, token)
-			.then(({ data }) => setPostsList(data))
+		api.getHashtag(0, hashtag, token)
+			.then(({ data }) => {
+				setOffset(0)
+				setPostsList(data)
+			})
 			.catch(handleFailGetHashtag)
 			.finally(() => setLoading(false))
-	}, [token, reloadPostsObserver, hashtag])
+	}, [token, hashtag, reloadPostsObserver])
 
 	return (
 		<>
@@ -48,7 +52,13 @@ function HashtagPage() {
 				<PageContainer title={`#${hashtag}`}>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This hashtag doesn\'t exist'}/> : 
-						<Posts postsList={postsList}/>}
+						<Scroller 
+							setOffset={setOffset}
+							offset={offset} 
+							setPostsList={setPostsList}
+							postsList={postsList}
+							hashtag={hashtag}
+						/>}
 				</PageContainer>
 			}
 		</>

@@ -9,7 +9,7 @@ import { errorModal, successModal } from '../../../factories/modalFactory'
 import { Create, Link, Message, Form, Button, Avatar } from './styles'
 
 
-function CreatePost({setPost}) {
+function CreatePost({setOffset, offset, setPostsList}) {
 	const [link, setLink] = useState('')
 	const [message, setMessage] = useState('')
 	const [disable, setDisable] = useState(false)
@@ -33,9 +33,11 @@ function CreatePost({setPost}) {
 			setMessage('')
 			setLink('')
 			setDisable(false)
-			api.getTimelinePosts({ token })
+			setOffset(0)
+
+			api.getTimelinePosts(offset, token)
 				.then(({ data }) => {
-					setPost(data)
+					setPostsList(data)
 					warnReloadPosts()
 				})
 		})

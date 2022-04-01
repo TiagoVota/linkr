@@ -7,8 +7,8 @@ import BASE_URL from './baseUrl'
 
 const POST_URL = `${BASE_URL}/posts`
 
-const getTimelinePosts = ({ token }) => {
-	return axios.get(`${POST_URL}/timeline`, makeConfig(token))
+const getTimelinePosts = (offset, token ) => {
+	return axios.get(`${POST_URL}/timeline?offset=${offset}`, makeConfig(token))
 }
 
 function createPost(body, token) {

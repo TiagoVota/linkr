@@ -12,12 +12,14 @@ import CreatePost from './createPost'
 import PageContainer from '../../components/pageContainer'
 import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
+import Scroller from '../../components/infiniteScroller'
 
 function Timeline() {
 	const { auth: { token } } = useAuth()
 	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
+	const [offset, setOffset] = useState(0)
 	const noPostsMessage = makeTimelinePostMessage(postsList)
 
 	function handleFailGetPosts({ response: { status }}) {
@@ -34,8 +36,8 @@ function Timeline() {
 	
 	useEffect(() => {
 		setIsLoading(true)
-
-		api.getTimelinePosts({ token })
+	
+		api.getTimelinePosts(offset, token)
 			.then(({ data }) => {
 				return setPostsList(data)
 			})
@@ -49,8 +51,14 @@ function Timeline() {
 				? <PostLoading />
 				:
 				<div>
-					<CreatePost setPost={setPostsList}/>
-					<Posts
+					<CreatePost 						
+						setOffset={setOffset}
+						offset={offset} 
+						setPostsList={setPostsList}/>
+					<Scroller 
+						setOffset={setOffset}
+						offset={offset} 
+						setPostsList={setPostsList}
 						postsList={postsList}
 						noPostsMessage={noPostsMessage}
 					/>
