@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import useInterval from 'use-interval'
 
 import useAuth from '../../hooks/useAuth'
 import useReloadPosts from '../../hooks/useReloadPosts'
@@ -10,8 +11,8 @@ import { makeTimelinePostMessage } from '../../helpers/postHelper'
 import CreatePost from './createPost'
 
 import PageContainer from '../../components/pageContainer'
-import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
+import LoadPostsButton from '../../components/loadPosts'
 import Scroller from '../../components/infiniteScroller'
 
 function Timeline() {
@@ -19,6 +20,8 @@ function Timeline() {
 	const { reloadPostsObserver } = useReloadPosts()
 	const [isLoading, setIsLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
+	const [newPosts, setNewPosts] = useState([])
+	const [numberOfNewPosts, setNumberOfNewPosts] = useState(0)
 	const [offset, setOffset] = useState(0)
 	const noPostsMessage = makeTimelinePostMessage(postsList)
 
@@ -45,6 +48,21 @@ function Timeline() {
 			.finally(() => setIsLoading(false))
 	}, [token, reloadPostsObserver])
 
+	useInterval(() => {
+		console.log(offset)
+		api.getTimelinePosts(0, token)
+			.then(({data}) => {
+				const maxIndex = postsList?.[0]?.postId
+				const newestPost = data.filter(({postId}) => postId > maxIndex)
+
+				if(newestPost.length === 0) return setNumberOfNewPosts(0)
+
+				setNumberOfNewPosts(newestPost.length)
+				setNewPosts(data)
+			})
+	}, 5000)
+
+
 	return (
 		<PageContainer title='timeline'>
 			{ isLoading
@@ -54,7 +72,17 @@ function Timeline() {
 					<CreatePost 						
 						setOffset={setOffset}
 						offset={offset} 
-						setPostsList={setPostsList}/>
+						setPostsList={setPostsList}
+						setNumberOfNewPosts={setNumberOfNewPosts}
+					/>
+					{numberOfNewPosts !== 0 &&
+						<LoadPostsButton 
+							numberOfPosts={numberOfNewPosts}
+							setPostsList={setPostsList}
+							newPosts={newPosts}
+							setNumberOfNewPosts={setNumberOfNewPosts}
+						/>
+					}
 					<Scroller 
 						setOffset={setOffset}
 						offset={offset} 

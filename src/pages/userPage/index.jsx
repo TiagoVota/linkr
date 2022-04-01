@@ -56,10 +56,6 @@ function UserPage() {
 		})
 	}, [token, userId, reloadPostsObserver])
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> main
 
 	return (
 		<>
