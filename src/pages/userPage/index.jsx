@@ -64,8 +64,8 @@ function UserPage() {
 					title={title}
 					picture={picture}
 					FollowButton={<FollowButton
-						userId={userId}
-						isFollowing={isFollowing}
+						followId={userId}
+						currentFollowState={isFollowing}
 						isHidden={!isFollowButtonDisplay}
 					/>}
 				>

@@ -14,7 +14,6 @@ import {
 
 function PageContainer(params) {
 	const { children: pageContent, title, picture, FollowButton } = params
-	console.log({ FollowButton })
 	return (
 		<>
 			<Header />
