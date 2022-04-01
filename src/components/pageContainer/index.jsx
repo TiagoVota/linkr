@@ -12,8 +12,9 @@ import {
 } from './styles'
 
 
-function PageContainer({ children: pageContent, title, picture }) {
-
+function PageContainer(params) {
+	const { children: pageContent, title, picture, FollowButton } = params
+	console.log({ FollowButton })
 	return (
 		<>
 			<Header />
@@ -26,6 +27,8 @@ function PageContainer({ children: pageContent, title, picture }) {
 						{picture && <ProfilePicture src={picture} />}
 
 						<Title>{title}</Title>
+
+						{FollowButton}
 					</FlexHeader>
 
 					<FlexContent>

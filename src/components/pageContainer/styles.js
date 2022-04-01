@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 import { headerHeight } from '../../utils/sharedSizes'
 
+
+const profileSize = '50px'
+const profileMobileSize = '40px'
+
 const Container = styled.div`
 	width: 100%;
 	height: calc(100% - ${headerHeight});
@@ -15,8 +19,7 @@ const Container = styled.div`
 `
 
 const Title = styled.div`
-	height: 160px;
-	padding-bottom: 53px;
+	height: 103px;
 
 	display: flex;
 	align-items: end;
@@ -31,8 +34,6 @@ const Title = styled.div`
 	color: #FFFFFF;
 
 	@media(max-width: 650px) {
-		height: 87px;
-		padding-bottom: 19px;
 		padding-left: 17px;
 	}
 `
@@ -50,17 +51,26 @@ const ContentContainer = styled.div`
 `
 
 const ProfilePicture = styled.img`
- width: 50px;
-	height: 50px;
+	width: ${profileSize};
+	height: ${profileSize};
 
 	border-radius: 26px;
 
 	margin: 0 10px;
+
+	@media(max-width: 650px) {
+		width: ${profileMobileSize};
+		height: ${profileMobileSize};
+	}
 `
 
 const FlexHeader = styled.div`
+	padding-bottom: 53px;
+
+	position: relative;
+
 	display: flex;
-	align-items: center;
+	align-items: end;
 `
 
 const FlexContent = styled.div`
