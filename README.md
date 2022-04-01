@@ -1,21 +1,22 @@
-# 🫖 Boilerplate
+# 🔗 Linkr
 ## 🚀 Descrição do Projeto
-Descrição lúdica sobre o projeto!
+Sabe aquele link que não basta deixar salvo nos favoritos? Vem com Linkr e bora compartilhar com seus amigos esse link imperdível que o mundo todo deveria estar sabendo!
 
 <!-- <p align="center">
 	<img alt='Boilerplate usage GIF' src="/public/assets/boilerplate-usage.gif" />
 </p> -->
 
-Corra para checar o site agora mesmo: https://boilerplate-tvc.vercel.app/
+Corra para checar o site agora mesmo: https://linkr-black.vercel.app/
 
 <br/>
 
 
 ## 🔍 Sobre
-Fala um pouco sobre e para que serve esse app. Na mesma, podemos encontrar as seguintes funcionalidades:
+Linkr é uma rede social, só com um propósito muito mais interessante que qualquer uma: com ele você poderá compartilhar links com o mundo! Só fazer seu cadastro e que comece a aventura! Nele você poderá criar seu link, compartilhar para os amigos que você segue ou para todos os que buscarem por ti. Ah, mas não se esquença de colocar um hashtag na descrição de seu link, assim você poderá ter mais visualizações em suas postagens, e quem sabe seu hashtag entre em nosso trending global 🤩. Nesse app, podemos encontrar as seguintes funcionalidades:
 
 ### Features
-- [x] Exemplo de funcionalidade
+- [x] Criar usuário
+- [ ] 
 - [x] Outra funcionalidade
 
 <br/>
@@ -23,7 +24,7 @@ Fala um pouco sobre e para que serve esse app. Na mesma, podemos encontrar as se
 
 ## ✔️ Tabela de conteúdo
 <!--ts-->
-- [🫖 Boilerplate](#-boilerplate)
+- [🔗 Linkr](#-linkr)
 	- [🚀 Descrição do Projeto](#-descrição-do-projeto)
 	- [🔍 Sobre](#-sobre)
 		- [Features](#features)
