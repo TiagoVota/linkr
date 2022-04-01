@@ -14,7 +14,7 @@ import { Div } from './style'
 import { useParams } from 'react-router-dom'
 
 
-function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user}) {
+function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user, noPostsMessage}}) {
 	const { auth: { token } } = useAuth()
 	const [hasMore, setHasMore] = useState(false)
 	const { userId } = useParams()
@@ -72,7 +72,10 @@ function Scroller({setOffset, offset, setPostsList, postsList, hashtag, user}) {
 					<p>Loading more posts...</p>
 				</Div>}
 		>
-			{<Posts postsList={postsList} />}
+			{<Posts 
+				postsList={postsList}
+				noPostsMessage={noPostsMessage}
+			/>}
 		</InfiniteScroll>
 	)
 }

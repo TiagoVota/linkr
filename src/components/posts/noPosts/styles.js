@@ -10,6 +10,7 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 
+	text-align: center;
 	font-weight: 700;
 	font-size: 25px;
 	line-height: 29px;

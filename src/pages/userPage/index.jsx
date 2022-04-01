@@ -12,19 +12,20 @@ import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import NoPosts from '../../components/posts/noPosts'
 import Scroller from '../../components/infiniteScroller'
+import FollowButton from './followButton'
 
 
 function UserPage() {
-	const { auth: { token } } = useAuth()
+	const { auth: { token, authDetails: { id: myUserId } } } = useAuth()
 	const { reloadPostsObserver } = useReloadPosts()
 	const [loading, setLoading] = useState(true)
 	const [postsList, setPostsList] = useState([])
 	const { userId } = useParams()
 	const [offset, setOffset] = useState(0)
 
-	const username = postsList[0]?.username
+	const [{ username, picture, isFollowing }={}] = postsList
 	const title = Boolean(username) ? `${username}'s posts` : ''
-	const picture = postsList[0]?.picture
+	const isFollowButtonDisplay = Boolean(myUserId !== Number(userId))
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -49,19 +50,31 @@ function UserPage() {
 			setLoading(false)
 		})
 
-		promise.catch(() => {
-			handleFailGetPosts
+		promise.catch((error) => {
+			handleFailGetPosts(error)
 			setLoading(false)
 		})
 	}, [token, userId, reloadPostsObserver])
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> main
 
 	return (
 		<>
 			{loading ?
 				<PostLoading />
 				:
-				<PageContainer title={title} picture={picture}>
+				<PageContainer
+					title={title}
+					picture={picture}
+					FollowButton={<FollowButton
+						followId={userId}
+						currentFollowState={isFollowing}
+						isHidden={!isFollowButtonDisplay}
+					/>}
+				>
 					{postsList.length === 0 ? 
 						<NoPosts message={'This user doesn\'t exist'}/> :
 						<Scroller 
