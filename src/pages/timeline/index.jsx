@@ -6,6 +6,7 @@ import useReloadPosts from '../../hooks/useReloadPosts'
 
 import api from '../../services/api.post'
 import { errorModal } from '../../factories/modalFactory'
+import { makeTimelinePostMessage } from '../../helpers/postHelper'
 
 import CreatePost from './createPost'
 
@@ -21,6 +22,7 @@ function Timeline() {
 	const [postsList, setPostsList] = useState([])
 	const [newPosts, setNewPosts] = useState([])
 	const [numberOfNewPosts, setNumberOfNewPosts] = useState(0)
+	const noPostsMessage = makeTimelinePostMessage(postsList)
 
 	function handleFailGetPosts({ response: { status }}) {
 		const msgStatus = {
@@ -55,7 +57,7 @@ function Timeline() {
 					setNumberOfNewPosts(0)
 				}
 			})
-	}, 15000)
+	}, 5000)
 
 	return (
 		<PageContainer title='timeline'>
@@ -72,7 +74,10 @@ function Timeline() {
 							setNumberOfNewPosts={setNumberOfNewPosts}
 						/>
 					}
-					<Posts postsList={postsList} />
+					<Posts
+						postsList={postsList}
+						noPostsMessage={noPostsMessage}
+					/>
 				</div>
 			}
 		</PageContainer>
