@@ -8,7 +8,6 @@ import api from '../../services/api.user'
 import { errorModal } from '../../factories/modalFactory'
 
 import PageContainer from '../../components/pageContainer'
-import Posts from '../../components/posts'
 import PostLoading from '../../components/postLoading'
 import NoPosts from '../../components/posts/noPosts'
 import Scroller from '../../components/infiniteScroller'
@@ -23,8 +22,11 @@ function UserPage() {
 	const { userId } = useParams()
 	const [offset, setOffset] = useState(0)
 
-	const [{ username, picture, isFollowing }={}] = postsList
-	const title = Boolean(username) ? `${username}'s posts` : ''
+	const [{ username, picture, isFollowing, userSharedName, userSharedPicture }={}] = postsList
+	const pageUsername = userSharedName || username
+	const pagePicture = userSharedPicture || picture
+
+	const title = Boolean(pageUsername) ? `${pageUsername}'s posts` : ''
 	const isFollowButtonDisplay = Boolean(myUserId !== Number(userId))
 
 	function handleFailGetPosts({ response: { status }}) {
@@ -56,6 +58,7 @@ function UserPage() {
 		})
 	}, [token, userId, reloadPostsObserver])
 
+
 	return (
 		<>
 			{loading ?
@@ -63,7 +66,7 @@ function UserPage() {
 				:
 				<PageContainer
 					title={title}
-					picture={picture}
+					picture={pagePicture}
 					FollowButton={<FollowButton
 						followId={userId}
 						currentFollowState={isFollowing}

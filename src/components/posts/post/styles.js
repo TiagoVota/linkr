@@ -22,6 +22,7 @@ const Container = styled.div`
 
 	display: flex;
 	justify-content: start;
+	margin-top: ${props => props.rePostId ? '80px' : '0px'};
 
 	background: #171717;
 	border-radius: 16px;

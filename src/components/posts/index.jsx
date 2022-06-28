@@ -12,7 +12,7 @@ function Posts({ postsList, userPage, noPostsMessage }) {
 			{
 				havePosts
 					? postsList.map((postInfo) => <Post
-						key={postInfo.postId}
+						key={Math.floor(Math.random() * 424242) * postInfo.postId}
 						postInfo={postInfo}
 					/>)
 					: <NoPosts message={message} userPage={userPage}/>
