@@ -39,6 +39,7 @@ Linkr é uma rede social, só com um propósito muito mais interessante que qual
 	- [✔️ Tabela de conteúdo](#️-tabela-de-conteúdo)
 	- [🖥 Tecnologias](#-tecnologias)
 	- [⚙ Como usar](#-como-usar)
+		- [Instalando a API](#instalando-a-api)
 		- [Instalando o app](#instalando-o-app)
 		- [Inicializando o app](#inicializando-o-app)
 	- [👨🏼‍💻 Autores](#-autores)
@@ -67,6 +68,8 @@ Para utilizar essa API, será necessário ter nas suas máquina as seguintes fer
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
 Além disso recomendo fortemente a utilização de um bom ter um editor de código, como o [VSCode](https://code.visualstudio.com/)!
 
+### Instalando a API
+Seguir os passos descritos na seção de [instalação da nossa API](https://github.com/TiagoVota/linkr-api/blob/main/README.md).
 
 ### Instalando o app
 ```bash
