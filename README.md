@@ -12,7 +12,7 @@ Corra para checar o site agora mesmo: https://linkr-black.vercel.app/
 
 
 ## 🔍 Sobre
-Linkr é uma rede social, só com um propósito muito mais interessante que qualquer uma: com ele você poderá compartilhar links com o mundo! Só fazer seu cadastro e que comece a aventura! Nele você poderá criar seu link, compartilhar para os amigos que você segue ou para todos os que buscarem por ti. Ah, mas não se esquença de colocar um hashtag na descrição de seu link, assim você poderá ter mais visualizações em suas postagens, e quem sabe seu hashtag entre em nosso trending global 🤩. Nesse app, podemos encontrar as seguintes funcionalidades:
+Linkr é uma rede social, só com um propósito muito mais interessante que qualquer uma: com ele você poderá compartilhar links com o mundo! Só fazer seu cadastro e que comece a aventura! Nele você poderá criar seu link, compartilhar para os amigos que você segue ou para todos os que buscarem por ti. Ah, mas não se esqueça de colocar um hashtag na descrição de seu link, assim você poderá ter mais visualizações em suas postagens, e quem sabe seu hashtag entre em nosso trending global 🤩. Nesse app, podemos encontrar as seguintes funcionalidades:
 
 ### Features
 - [x] Cadastrar usuário
@@ -64,7 +64,7 @@ Linkr é uma rede social, só com um propósito muito mais interessante que qual
 
 
 ## ⚙ Como usar
-Para utilizar essa API, será necessário ter nas suas máquina as seguintes ferramentas:
+Para utilizar essa API, será necessário ter na sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
 Além disso recomendo fortemente a utilização de um bom ter um editor de código, como o [VSCode](https://code.visualstudio.com/)!
 
@@ -85,7 +85,7 @@ npm install
 ```bash
 # Execute a aplicação
 npm start
-# O servidor inciará na porta:3000 (escolhida por padrão) - acesse http://localhost:3000 
+# O servidor iniciará na porta:3000 (escolhida por padrão) - acesse http://localhost:3000 
 ```
 
 <br/>
